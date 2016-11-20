@@ -22,11 +22,11 @@ public class Main {
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
 		// PruebaERROR_RegistrarCiudad(s, p);
-		 PruebaERROR_RegistrarHotel(s, p);
+		// PruebaERROR_RegistrarHotel(s, p);
 		// PruebaERROR_IngresarServicio(s, p);
 		// PruebaERROR_BorrarServicio(s, p);
 		// PruebaERROR_IngresarComentario(s, p);
-		// PruebaERROR_RealizarReserva(s, p);
+		PruebaERROR_RealizarReserva(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION -----------------------//
 
@@ -216,13 +216,21 @@ public class Main {
 				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
 		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
-		p.ver(s.registrarHotel("Salto", "Quiroga", 5, 0), Sistema.TipoRet.OK,
+		p.ver(s.registrarHotel("Salto", "Quiroga", 5, 2), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
 
-		p.ver(s.realizarReserva(1, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
 		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(1, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
 
 	}
 
@@ -478,9 +486,21 @@ public class Main {
 				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
 		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 4, 2), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
 
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.realizarReserva(1, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
 				"Se realizó la reserva para el cliente '1' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(1, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
 
 		// 1. En caso de que no exista un hotel de nombre “Hotel” registrado
 		// dentro de la ciudad Ciudad”.

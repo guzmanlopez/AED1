@@ -99,7 +99,15 @@ public class Sistema implements ISistema {
 	@Override
 	public TipoRet ingresarServicio(String ciudad, String hotel, String servicio) {
 
-		Hotel h = new Hotel(hotel);
+		// En caso que no exista la ciudad “Ciudad”.
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		if (!existeC) {
+			return TipoRet.ERROR_2;
+		}
+
+		Hotel h = new Hotel(hotel, ciudad);
 		boolean existeH = this.hoteles.existe(h);
 
 		if (!existeH) {
@@ -108,23 +116,7 @@ public class Sistema implements ISistema {
 
 		else {
 
-			// En caso que no exista la ciudad “Ciudad”.
-			Ciudad c = new Ciudad(ciudad);
-			boolean existeC = this.ciudades.existe(c);
-
-			if (!existeC) {
-				return TipoRet.ERROR_2;
-			}
-
 			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
-
-			// En caso de que no exista el hotel en la ciudad
-			boolean existeHenC = recuperarC.getHoteles().existe(h);
-
-			if (!existeHenC) {
-				return TipoRet.ERROR_1;
-			}
-
 			Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
 			recuperarH.ingresarServicio(servicio);
 			return TipoRet.OK;
@@ -134,62 +126,58 @@ public class Sistema implements ISistema {
 	@Override
 	public TipoRet borrarServicio(String ciudad, String hotel, String servicio) {
 
+		// En caso que no exista la ciudad “Ciudad”.
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		if (!existeC) {
+			return TipoRet.ERROR_3;
+		}
+
 		// En caso que no exista un hotel “Hotel” registrado dentro de la ciudad
 		// “Ciudad”
 
-		Hotel h = new Hotel(hotel);
+		Hotel h = new Hotel(hotel, ciudad);
 		boolean existeH = this.hoteles.existe(h);
 
 		if (!existeH) {
 			return TipoRet.ERROR_1;
 		}
 
-		else {
+		// 2. En caso de que no exista el servicio “Servicio” registrado en
+		// el hotel “Hotel”.
 
-			// En caso que no exista la ciudad “Ciudad”.
-			Ciudad c = new Ciudad(ciudad);
-			boolean existeC = this.ciudades.existe(c);
+		Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
+		Servicio s = new Servicio(servicio);
+		Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
+		boolean existeS = recuperarH.getServicios().existe(s);
 
-			if (!existeC) {
-				return TipoRet.ERROR_3;
-			}
-
-			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
-
-			// En caso de que no exista el hotel en la ciudad
-			boolean existeHenC = recuperarC.getHoteles().existe(h);
-
-			if (!existeHenC) {
-				return TipoRet.ERROR_1;
-			}
-
-			// 2. En caso de que no exista el servicio “Servicio” registrado en
-			// el hotel “Hotel”.
-
-			Servicio s = new Servicio(servicio);
-			Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
-			boolean existeS = recuperarH.getServicios().existe(s);
-
-			if (!existeS) {
-				return TipoRet.ERROR_2;
-			}
-
-			recuperarH.borrarServicio(servicio);
-			return TipoRet.OK;
+		if (!existeS) {
+			return TipoRet.ERROR_2;
 		}
+
+		recuperarH.borrarServicio(servicio);
+		return TipoRet.OK;
 	}
 
 	@Override
 	public TipoRet ingresarComentario(String ciudad, String hotel, String comentario, int ranking) {
 
 		// 1. En caso que el ranking sea menor a 0 o mayor a 5.
-
 		if (ranking < 0 || ranking > 5) {
 
 			return TipoRet.ERROR_1;
 		}
 
-		Hotel h = new Hotel(hotel);
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// 3. En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_3;
+		}
+
+		Hotel h = new Hotel(hotel, ciudad);
 		boolean existeH = this.hoteles.existe(h);
 
 		if (!existeH) {
@@ -198,25 +186,7 @@ public class Sistema implements ISistema {
 
 		else {
 
-			Ciudad c = new Ciudad(ciudad);
-			boolean existeC = this.ciudades.existe(c);
-
-			// 3. En caso que no exista la ciudad “Ciudad”.
-
-			if (!existeC) {
-				return TipoRet.ERROR_3;
-			}
-
 			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
-
-			// 2. En caso que no exista un hotel de nombre “Hotel” registrado
-			// dentro de la ciudad “Ciudad”.
-			boolean existeHenC = recuperarC.getHoteles().existe(h);
-
-			if (!existeHenC) {
-				return TipoRet.ERROR_2;
-			}
-
 			Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
 			recuperarH.ingresarComentario(ciudad, hotel, comentario, ranking);
 			return TipoRet.OK;
@@ -226,59 +196,38 @@ public class Sistema implements ISistema {
 	@Override
 	public TipoRet realizarReserva(int cliente, String ciudad, String hotel) {
 
-		// En caso de que la reserva haya sido efectuada correctamente en el
-		// hotel “Hotel”
-		// En caso de que la reserva haya quedado en lista de espera.
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
 
-		Hotel h = new Hotel(hotel);
-		boolean existeH = this.hoteles.existe(h);
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_2;
+		}
 
 		// En caso de que no exista un hotel de nombre “Hotel” registrado
 		// dentro de la ciudad Ciudad”.
+		Hotel h = new Hotel(hotel, ciudad);
+		boolean existeH = this.hoteles.existe(h);
+
 		if (!existeH) {
 			return TipoRet.ERROR_1;
 		}
 
-		else {
+		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
+		int capacidadHotel = recuperarH.getCapacidad();
 
-			Ciudad c = new Ciudad(ciudad);
-			boolean existeC = this.ciudades.existe(c);
+		// En caso de que la reserva haya sido efectuada correctamente en el
+		// hotel “Hotel”
+		if (capacidadHotel > 0) {
 
-			// En caso que no exista la ciudad “Ciudad”.
-			if (!existeC) {
-				return TipoRet.ERROR_2;
-			}
+			recuperarH.ingresarReservas(cliente, ciudad, hotel);
+			recuperarH.setCapacidad(capacidadHotel - 1);
+			return TipoRet.OK;
 
-			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
-
-			// En caso que no exista un hotel de nombre “Hotel” registrado
-			// dentro de la ciudad “Ciudad”.
-			boolean existeHenC = recuperarC.getHoteles().existe(h);
-
-			if (!existeHenC) {
-				return TipoRet.ERROR_1;
-			}
-
-			Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
-			int capacidadHotel = recuperarH.getCapacidad();
-
-			// Ver si guardo en la ciudad toda la info del hotel o no
-			System.out.println(capacidadHotel);
-			System.out.println(recuperarH.getCategoria());
-			System.out.println(recuperarH.getNombre());
-			System.out.println(recuperarH.getCiudad());
-
-			if (capacidadHotel > 0) {
-
-				recuperarH.ingresarReservas(cliente, ciudad, hotel);
-				recuperarH.setCapacidad(capacidadHotel - 1);
-				return TipoRet.OK;
-
-			} else {
-				recuperarH.ingresarEspera(cliente);
-				System.out.println("A lista de espera");
-				return TipoRet.OK;
-			}
+			// En caso de que la reserva haya quedado en lista de espera.
+		} else {
+			recuperarH.ingresarEspera(cliente);
+			return TipoRet.OK;
 		}
 	}
 
