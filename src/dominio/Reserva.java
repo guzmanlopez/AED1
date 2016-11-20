@@ -60,7 +60,7 @@ public class Reserva {
 
 		Reserva otra = (Reserva) obj;
 
-		if (this.cliente != otra.cliente || this.getCiudad() != otra.getCiudad() || this.getHotel() != otra.getHotel()) {
+		if (this.getCliente().getId() != otra.getCliente().getId() || this.getCiudad().getNomCiudad() != otra.getCiudad().getNomCiudad() || this.getHotel().getNombre() != otra.getHotel().getNombre()) {
 			ret = false;
 		}
 

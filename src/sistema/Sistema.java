@@ -252,10 +252,12 @@ public class Sistema implements ISistema {
 		boolean existeR = recuperarH.getReservas().existe(r);
 
 		if (!existeR) {
-			return TipoRet.ERROR_1;
+			return TipoRet.ERROR_2;
 		}
 
 		recuperarH.borrarReservas(cliente, ciudad, hotel);
+		// System.out.println("Reservas = " + recuperarH.getReservas().largo());
+		// System.out.println("Esperas = " + recuperarH.getEsperas().largo());
 		return TipoRet.OK;
 
 	}

@@ -45,5 +45,11 @@ public class Cliente {
 
 		return ret;
 	}
+	
+	@Override
+	public String toString() {
+		return this.id.toString();
+	}
+
 
 }

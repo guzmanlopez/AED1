@@ -18,7 +18,7 @@ public class Main {
 		// PruebaOK_BorrarServicio(s, p);
 		// PruebaOK_IngresarComentario(s, p);
 		// PruebaOK_RealizarReserva(s, p);
-		PruebaOK_CancelarReserva(s, p);
+		// PruebaOK_CancelarReserva(s, p);
 
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
@@ -223,23 +223,23 @@ public class Main {
 
 		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+		p.ver(s.realizarReserva(2, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '2' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(3, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+		p.ver(s.realizarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
-		p.ver(s.realizarReserva(1, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(5, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '5' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(6, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '6' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
 
 	}
 
-	// Prueba OK para Cancelar Reserva
+	// Prueba OK para Borrar Reserva
 	public static void PruebaOK_CancelarReserva(Sistema s, Prueba p) {
 
-		p.tituloPrueba("PruebaOK_RealizarReserva - Cancelar Reserva");
+		p.tituloPrueba("PruebaOK_CancelarReserva - Cancelar Reserva");
 
 		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
 				"Se creó un sistema de reservas con límite de '20' ciudades");
@@ -261,16 +261,25 @@ public class Main {
 
 		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+		p.ver(s.realizarReserva(2, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '2' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(3, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+		p.ver(s.realizarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(1, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
-		p.ver(s.realizarReserva(1, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '1' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(5, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '5' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(6, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '6' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+
+		p.ver(s.cancelarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.cancelarReserva(2, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '2' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.cancelarReserva(3, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '3' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.cancelarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '4' en el hotel 'Quiroga' en la ciudad de 'Salto'");
 
 	}
 
@@ -556,6 +565,70 @@ public class Main {
 				"No se realizó la reserva. No existe la ciudad en el sistema.");
 		p.ver(s.realizarReserva(1, "Tacuarembó", "NH-Columbia"), Sistema.TipoRet.ERROR_2,
 				"No se realizó la reserva. No existe la ciudad en el sistema.");
+	}
+
+	// Prueba OK para Borrar Reserva
+	public static void PruebaERROR_CancelarReserva(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaERROR_CancelarReserva - Cancelar Reserva");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 5, 2), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
+
+		p.ver(s.realizarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(2, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '2' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(3, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(5, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '5' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(6, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '6' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+
+		p.ver(s.cancelarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+
+		// 1. En caso de que no exista un hotel de nombre “Hotel” registrado en
+		// la ciudad “Ciudad”.
+		p.tituloPrueba("PruebaERROR_CancelarReserva - No existe el hotel en la ciudad");
+		p.ver(s.cancelarReserva(2, "Montevideo", "Quiroga"), Sistema.TipoRet.ERROR_1,
+				"No se canceló la reserva para el cliente '2'. No existe el hotel 'Quiroga' en la ciudad de 'Montevideo'");
+
+		// 2. En caso de que el cliente “cliente” no tenga ninguna reserva en el
+		// hotel “Hotel” registrado en la ciudad “Ciudad”.
+		p.tituloPrueba("PruebaERROR_CancelarReserva - El cliente no tiene reserva para el hotel en la ciudad");
+
+		p.ver(s.cancelarReserva(20, "Salto", "Quiroga"), Sistema.TipoRet.ERROR_2,
+				"No se canceló la reserva para el cliente '20'. El cliente no tiene reserva para el hotel en la ciudad.");
+
+		p.ver(s.cancelarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.ERROR_2,
+				"No se canceló la reserva para el cliente '1'. El cliente no tiene reserva para el hotel en la ciudad.");
+
+		// 3. En caso que no exista la ciudad “Ciudad”.
+		p.tituloPrueba("PruebaERROR_CancelarReserva - No existe la ciudad en el sistema");
+		p.ver(s.cancelarReserva(2, "Rivera", "Quiroga"), Sistema.TipoRet.ERROR_3,
+				"No se canceló la reserva para el cliente '2'. No existe la ciudad en el sistema.");
+		p.ver(s.cancelarReserva(6, "Tacuarembó", "NH-Columbia"), Sistema.TipoRet.ERROR_3,
+				"No se canceló la reserva para el cliente '6'. No existe la ciudad en el sistema.");
+
 	}
 
 	// public static void PruebaOK_1(Sistema s, Prueba p) {

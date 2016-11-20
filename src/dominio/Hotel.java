@@ -155,15 +155,29 @@ public class Hotel {
 	// pre: la reserva existe en ILista reservas
 	// pos: la reserva es borrada de ILista reservas
 	public void borrarReservas(int cliente, String ciudad, String hotel) {
+
 		Reserva borrarR = new Reserva(cliente, ciudad, hotel);
 		this.reservas.borrar(borrarR);
 
-		// Capacidad
-		this.capacidad = this.capacidad + 1;
+		if (this.esperas.largo() > 0) {
 
-		// Agregar desde la lista de espera si existe uno a la reserva cuando se
-		// borra una reserva
+			// Tomo el primero de la lista de espera
+			Espera e = (Espera) this.esperas.primero();
+			// Creo la reserva
+			Reserva r = new Reserva(e.getCliente().getId(), ciudad, hotel);
+			// Agrego la reserva a la lista de reservas del hotel
+			this.reservas.insertar(r);
+			// Borro la espera
+			this.esperas.borrar(e);
 
+		}
+
+		else {
+
+			// Capacidad
+			this.capacidad = this.capacidad + 1;
+
+		}
 	}
 
 	// pre: la reserva no existe en ILista reservas
