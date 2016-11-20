@@ -139,7 +139,17 @@ public class Hotel {
 	// pos: la reserva es agregada a ILista reservas
 	public void ingresarReservas(int cliente, String ciudad, String hotel) {
 		Reserva nuevaR = new Reserva(cliente, ciudad, hotel);
-		this.reservas.insertar(nuevaR);
+
+		// Capacidad
+		if (this.capacidad >= 1) {
+			this.reservas.insertar(nuevaR);
+			this.capacidad = this.capacidad - 1;
+		}
+
+		else {
+			ingresarEspera(cliente);
+			System.out.println("A lista de espera");
+		}
 	}
 
 	// pre: la reserva existe en ILista reservas
@@ -147,6 +157,13 @@ public class Hotel {
 	public void borrarReservas(int cliente, String ciudad, String hotel) {
 		Reserva borrarR = new Reserva(cliente, ciudad, hotel);
 		this.reservas.borrar(borrarR);
+
+		// Capacidad
+		this.capacidad = this.capacidad + 1;
+
+		// Agregar desde la lista de espera si existe uno a la reserva cuando se
+		// borra una reserva
+
 	}
 
 	// pre: la reserva no existe en ILista reservas

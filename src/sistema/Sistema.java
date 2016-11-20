@@ -2,11 +2,14 @@ package sistema;
 
 import dominio.Hotel;
 import dominio.Ciudad;
+
 //import dominio.Cliente;
 //import dominio.Comentario;
 
-// ver si tengo que importar servicio para crear clase servicio
+// ver si tengo que importar estas clases 
 import dominio.Servicio;
+import dominio.Reserva;
+
 import estructuras.ILista;
 import estructuras.ListaSEIni;
 
@@ -214,26 +217,47 @@ public class Sistema implements ISistema {
 		}
 
 		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
-		int capacidadHotel = recuperarH.getCapacidad();
 
 		// En caso de que la reserva haya sido efectuada correctamente en el
 		// hotel “Hotel”
-		if (capacidadHotel > 0) {
+		recuperarH.ingresarReservas(cliente, ciudad, hotel);
+		return TipoRet.OK;
 
-			recuperarH.ingresarReservas(cliente, ciudad, hotel);
-			recuperarH.setCapacidad(capacidadHotel - 1);
-			return TipoRet.OK;
-
-			// En caso de que la reserva haya quedado en lista de espera.
-		} else {
-			recuperarH.ingresarEspera(cliente);
-			return TipoRet.OK;
-		}
 	}
 
 	@Override
 	public TipoRet cancelarReserva(int cliente, String ciudad, String hotel) {
-		return TipoRet.NO_IMPLEMENTADA;
+
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_3;
+		}
+
+		// En caso de que no exista un hotel de nombre “Hotel” registrado
+		// dentro de la ciudad Ciudad”.
+		Hotel h = new Hotel(hotel, ciudad);
+		boolean existeH = this.hoteles.existe(h);
+
+		if (!existeH) {
+			return TipoRet.ERROR_1;
+		}
+
+		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
+
+		// En caso de que el cliente no tenga la reserva en el hotel
+		Reserva r = new Reserva(cliente, ciudad, hotel);
+		boolean existeR = recuperarH.getReservas().existe(r);
+
+		if (!existeR) {
+			return TipoRet.ERROR_1;
+		}
+
+		recuperarH.borrarReservas(cliente, ciudad, hotel);
+		return TipoRet.OK;
+
 	}
 
 	@Override
