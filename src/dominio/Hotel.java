@@ -48,12 +48,20 @@ public class Hotel {
 		this.capacidad = capacidad;
 	}
 
-	public Integer getCategoria() {
+	public Integer getEstrellas() {
 		return this.estrellas;
 	}
 
-	public void setCategoria(Integer categoria) {
+	public void setEstrellas(Integer categoria) {
 		this.estrellas = categoria;
+	}
+
+	public float getRanking() {
+		return this.rankingHotel;
+	}
+
+	public void setRanking(float ranking) {
+		this.rankingHotel = ranking;
 	}
 
 	public ILista getComentarios() {
@@ -128,6 +136,7 @@ public class Hotel {
 	public void ingresarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
 		Comentario nuevoC = new Comentario(comentario, ranking);
 		this.comentarios.insertar(nuevoC);
+		actualizarRankingHotel();
 	}
 
 	// pre: el servicio existe en ILista servicios
@@ -135,6 +144,7 @@ public class Hotel {
 	public void borrarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
 		Comentario borrarC = new Comentario(comentario, ranking);
 		this.comentarios.borrar(borrarC);
+		actualizarRankingHotel();
 	}
 
 	// pre: la reserva no existe en ILista reservas

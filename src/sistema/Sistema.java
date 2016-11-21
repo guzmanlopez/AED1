@@ -212,6 +212,8 @@ public class Sistema implements ISistema {
 			Hotel recuperarHenS = (Hotel) this.hoteles.recuperar(h);
 			recuperarHenS.ingresarComentario(ciudad, hotel, comentario, ranking);
 
+			// System.out.println(recuperarHenS.getRanking());
+
 			return TipoRet.OK;
 		}
 	}

@@ -16,7 +16,7 @@ public class Main {
 		// PruebaOK_RegistrarHotel(s, p);
 		// PruebaOK_IngresarServicio(s, p);
 		// PruebaOK_BorrarServicio(s, p);
-		// PruebaOK_IngresarComentario(s, p);
+		 PruebaOK_IngresarComentario(s, p);
 		// PruebaOK_RealizarReserva(s, p);
 		// PruebaOK_CancelarReserva(s, p);
 		// PruebaOK_ListarServicios(s, p);
@@ -26,17 +26,17 @@ public class Main {
 
 		// ---------------------- PRUEBAS ERROR ----------------------- //
 
-		// PruebaERROR_RegistrarCiudad(s, p);
-		// PruebaERROR_RegistrarHotel(s, p);
-		// PruebaERROR_IngresarServicio(s, p);
-		// PruebaERROR_BorrarServicio(s, p);
-		// PruebaERROR_IngresarComentario(s, p);
-		// PruebaERROR_RealizarReserva(s, p);
-		// PruebaERROR_CancelarReserva(s, p);
-		// PruebaERROR_ListarServicios(s, p);
-		// PruebaERROR_ListarHotelesCiudad(s, p);
-		// PruebaERROR_ListarComentarios(s, p);
-		// PruebaERROR_ListarEspera(s, p);
+//		 PruebaERROR_RegistrarCiudad(s, p);
+//		 PruebaERROR_RegistrarHotel(s, p);
+//		 PruebaERROR_IngresarServicio(s, p);
+//		 PruebaERROR_BorrarServicio(s, p);
+//		 PruebaERROR_IngresarComentario(s, p);
+//		 PruebaERROR_RealizarReserva(s, p);
+//		 PruebaERROR_CancelarReserva(s, p);
+//		 PruebaERROR_ListarServicios(s, p);
+//		 PruebaERROR_ListarHotelesCiudad(s, p);
+//		 PruebaERROR_ListarComentarios(s, p);
+//		 PruebaERROR_ListarEspera(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION --------------------- //
 
@@ -199,13 +199,20 @@ public class Main {
 		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
 
-		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 5), Sistema.TipoRet.OK,
+		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 4), Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Excelente servicio y atención' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		
 		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
-		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 3),
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 1),
 				Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Cena muy temprana y poco abundante' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 4), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
 	}
 
 	// Prueba OK para Realizar Reserva
