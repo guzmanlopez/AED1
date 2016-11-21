@@ -20,6 +20,7 @@ public class Main {
 		// PruebaOK_RealizarReserva(s, p);
 		// PruebaOK_CancelarReserva(s, p);
 		// PruebaOK_ListarServicios(s, p);
+		// PruebaOK_ListarHotelesCiudad(s, p);
 
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
@@ -30,7 +31,8 @@ public class Main {
 		// PruebaERROR_IngresarComentario(s, p);
 		// PruebaERROR_RealizarReserva(s, p);
 		// PruebaERROR_CancelarReserva(s, p);
-		PruebaERROR_ListarServicios(s, p);
+		// PruebaERROR_ListarServicios(s, p);
+		PruebaERROR_ListarHotelesCiudad(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION -----------------------//
 
@@ -332,6 +334,40 @@ public class Main {
 				"Listar Servicios del hotel 'NH-Columbia' en 'Salto'");
 		p.ver(s.listarServicios("Colonia", "Radisson"), Sistema.TipoRet.OK,
 				"Listar Servicios del hotel 'Radisson' en 'Colonia'");
+
+	}
+
+	// Prueba OK para Listar Hoteles
+	public static void PruebaOK_ListarHotelesCiudad(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaOK_ListarHotelesCiudad - Listar Hoteles en la Ciudad");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+		p.ver(s.registrarCiudad("Maldonado"), Sistema.TipoRet.OK, "Se agregó 'Maldonado' al mapa");
+		
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Conrad", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Conrad' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
+
+		p.ver(s.listarHotelesCiudad("Salto"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Salto'");
+		p.ver(s.listarHotelesCiudad("Montevideo"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Montevideo'");
+		p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Colonia'");
+		p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Maldonado'");
+
 
 	}
 
@@ -744,6 +780,46 @@ public class Main {
 		p.tituloPrueba("PruebaERROR_ListarServicios -  No existe la ciudad");
 		p.ver(s.listarServicios("Rivera", "NH-Columbia"), Sistema.TipoRet.ERROR_2, "No existe la ciudad en el sistema");
 		p.ver(s.listarServicios("Tacuarembó", "Quiroga"), Sistema.TipoRet.ERROR_2, "No existe la ciudad en el sistema");
+	}
+
+	// Prueba OK para Listar Hoteles
+	public static void PruebaERROR_ListarHotelesCiudad(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaERROR_ListarHotelesCiudad - Listar Hoteles en la Ciudad");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+		p.ver(s.registrarCiudad("Maldonado"), Sistema.TipoRet.OK, "Se agregó 'Maldonado' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Conrad", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Conrad' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
+
+		p.ver(s.listarHotelesCiudad("Salto"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Salto'");
+		p.ver(s.listarHotelesCiudad("Montevideo"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Montevideo'");
+		p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Colonia'");
+		p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Maldonado'");
+
+
+		p.tituloPrueba("PruebaERROR_ListarHotelesCiudad - No existe la ciudad");
+
+		p.ver(s.listarHotelesCiudad("Rivera"), Sistema.TipoRet.ERROR_1, "No existe la ciudad en el sistema");
+		p.ver(s.listarHotelesCiudad("Tacuarembó"), Sistema.TipoRet.ERROR_1, "No existe la ciudad en el sistema");
+		p.ver(s.listarHotelesCiudad("Durazno"), Sistema.TipoRet.ERROR_1, "No existe la ciudad en el sistema");
+
 	}
 
 	// public static void PruebaOK_1(Sistema s, Prueba p) {

@@ -173,7 +173,7 @@ public class Sistema implements ISistema {
 		// sistema
 		Hotel recuperarHenLista = (Hotel) this.hoteles.recuperar(h);
 		recuperarHenLista.borrarServicio(servicio);
-		
+
 		return TipoRet.OK;
 	}
 
@@ -304,7 +304,7 @@ public class Sistema implements ISistema {
 
 		if (listaServicios.largo() == 0)
 			System.out.println("No existen servicios registrados en el hotel " + recuperarH.getNombre() + " "
-					+ recuperarH.getCiudad() + ".");
+					+ recuperarH.getCiudad() + "." + "\n");
 		else {
 			int contador = 1;
 			System.out.println(
@@ -319,7 +319,30 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRet listarHotelesCiudad(String ciudad) {
-		return TipoRet.NO_IMPLEMENTADA;
+
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_1;
+		}
+
+		Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
+
+		ILista listaHoteles = recuperarC.getHoteles();
+
+		if (listaHoteles.largo() == 0)
+			System.out.println("No existen hoteles registrados en " + recuperarC.getNomCiudad() + "." + "\n");
+		else {
+			int contador = 1;
+			System.out.println("Hoteles en " + recuperarC.getNomCiudad() + ":" + "\n");
+			for (Object hotel : listaHoteles)
+				System.out.println(contador++ + " - " + (String) hotel.toString());
+		}
+
+		return TipoRet.OK;
+
 	}
 
 	@Override
