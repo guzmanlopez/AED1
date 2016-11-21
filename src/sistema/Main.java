@@ -19,6 +19,7 @@ public class Main {
 		// PruebaOK_IngresarComentario(s, p);
 		// PruebaOK_RealizarReserva(s, p);
 		// PruebaOK_CancelarReserva(s, p);
+		PruebaOK_ListarServicios(s, p);
 
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
@@ -280,6 +281,44 @@ public class Main {
 				"Se canceló la reserva para el cliente '3' en el hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.cancelarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se canceló la reserva para el cliente '4' en el hotel 'Quiroga' en la ciudad de 'Salto'");
+
+	}
+
+	// Prueba OK para Listar Servicios
+	public static void PruebaOK_ListarServicios(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaOK_ListarServicios - Listar Servicios");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+
+		p.ver(s.ingresarServicio("Montevideo", "NH-Columbia", "Lavado de ropa"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Lavado de ropa' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Salto", "NH-Columbia", "Desayuno"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Desayuno' al hotel 'NH-Columbia' de la ciudad 'Salto'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Desayuno"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Merienda' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Cena"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Cena' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Piscina"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Piscina' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Lavado de ropa"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Lavado de ropa' al hotel 'Radisson' de la ciudad 'Montevideo'");
+
+		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK, "Listar Servicios");
 
 	}
 

@@ -98,8 +98,6 @@ public class ListaSEIni implements ILista {
 		throw new UnsupportedOperationException();
 	}
 
-	
-
 	// pre: el objeto existe en la lista
 	// pos: el objeto es borrado de la lista
 	@Override
@@ -119,5 +117,50 @@ public class ListaSEIni implements ILista {
 			}
 		}
 	}
+
+	// pre: el objeto existe en la lista
+	// pos: el objeto es borrado de la lista
+	@Override
+	public String imprimir() {
+
+		// NodoLista aux = inicio;
+		// String retorno = "";
+		//
+		// if (inicio == null) {
+		// retorno = "No existen servicios registrados en el hotel";
+		// }
+		//
+		// int i = 0;
+		//
+		// while (aux != null) {
+		// i++;
+		// retorno = i + "- " + aux.getDato().toString();
+		// return retorno;
+		// }
+		// return retorno;
+
+		String retorno = "";
+		NodoLista aux = this.inicio;
+		Integer i = 0;
+
+		while (aux != null) {
+			i++;
+			aux = aux.getSiguiente();
+		}
+		
+		retorno = i.toString();
+		return retorno;
+
+	}
+
+	// if (this.esVacia())
+	// System.out.println("La lista es vacia");
+	// else{
+	// NodoLista aux = this.inicio;
+	// while (aux != null){
+	// System.out.println(aux.getElem());
+	// aux = aux.getSig();
+	// }
+	// }
 
 }

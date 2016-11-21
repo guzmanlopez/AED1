@@ -264,7 +264,41 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRet listarServicios(String ciudad, String hotel) {
-		return TipoRet.NO_IMPLEMENTADA;
+
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_2;
+		}
+
+		// En caso de que no exista un hotel de nombre “Hotel” registrado
+		// dentro de la ciudad Ciudad”.
+		Hotel h = new Hotel(hotel, ciudad);
+		boolean existeH = this.hoteles.existe(h);
+
+		if (!existeH) {
+			return TipoRet.ERROR_1;
+		}
+
+		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
+		String servicios = recuperarH.listarServicios(ciudad, hotel);
+
+		ILista servicios = recuperarH.getServicios();
+
+		if (servicios.largo() == 0)
+			System.out.println("No existen servicios registrados en el hotel " + recuperarH.getNombre()
+					+ recuperarH.getCiudad() + ".");
+		else {
+			int contador = 1;
+			System.out.println(recuperarH.getServicios());
+			for (Object servicio : servicios)
+				System.out.println(contador++ + " - " + (String) servicio);
+		}
+
+		return TipoRet.OK;
+
 	}
 
 	@Override

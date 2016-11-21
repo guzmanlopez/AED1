@@ -18,4 +18,6 @@ public interface ILista extends Iterable<Object> {
 
 	// Pre: existe el dato
 	public Object recuperar(Object dato);
+
+	public String imprimir();
 }

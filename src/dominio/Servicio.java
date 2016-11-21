@@ -16,9 +16,7 @@ public class Servicio {
 
 	// Constructor
 	public Servicio(String nomServicio) {
-
 		this.nomServicio = nomServicio;
-
 	}
 	
 	@Override
