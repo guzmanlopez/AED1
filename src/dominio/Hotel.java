@@ -195,20 +195,6 @@ public class Hotel {
 		this.esperas.borrar(nuevaE);
 	}
 
-	public String listarServicios(String ciudad, String hotel) {
-
-		// Formato.
-		// Servicios del Hotel <Hotel> <Ciudad>
-		// 1 - <Servicio1>
-		// ...
-		// N - <ServicioN>
-
-		String listado = "Servicios del Hotel " + hotel + " " + ciudad + "\n";
-		listado = listado + this.servicios.imprimir();
-		return listado;
-
-	}
-
 	// ***** Sobreescrituras ***** //
 
 	// Cambiar equals para que compare si un hotel es igual a otro solo por

@@ -19,7 +19,7 @@ public class Main {
 		// PruebaOK_IngresarComentario(s, p);
 		// PruebaOK_RealizarReserva(s, p);
 		// PruebaOK_CancelarReserva(s, p);
-		PruebaOK_ListarServicios(s, p);
+		// PruebaOK_ListarServicios(s, p);
 
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
@@ -30,6 +30,7 @@ public class Main {
 		// PruebaERROR_IngresarComentario(s, p);
 		// PruebaERROR_RealizarReserva(s, p);
 		// PruebaERROR_CancelarReserva(s, p);
+		PruebaERROR_ListarServicios(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION -----------------------//
 
@@ -317,8 +318,20 @@ public class Main {
 				"Se agregó el servicio 'Piscina' al hotel 'Radisson' de la ciudad 'Montevideo'");
 		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Lavado de ropa"), Sistema.TipoRet.OK,
 				"Se agregó el servicio 'Lavado de ropa' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Salto", "NH-Columbia", "Casino"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Casino' al hotel 'NH-Columbia' de la ciudad 'Salto'");
 
-		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK, "Listar Servicios");
+		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Montevideo'");
+		p.ver(s.borrarServicio("Montevideo", "Radisson", "Cena"), Sistema.TipoRet.OK,
+				"Se borró el servicio 'Cena' del hotel 'Radisson' en 'Montevideo'");
+		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Montevideo'");
+
+		p.ver(s.listarServicios("Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'NH-Columbia' en 'Salto'");
+		p.ver(s.listarServicios("Colonia", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Colonia'");
 
 	}
 
@@ -606,7 +619,7 @@ public class Main {
 				"No se realizó la reserva. No existe la ciudad en el sistema.");
 	}
 
-	// Prueba OK para Borrar Reserva
+	// Prueba ERROR para Borrar Reserva
 	public static void PruebaERROR_CancelarReserva(Sistema s, Prueba p) {
 
 		p.tituloPrueba("PruebaERROR_CancelarReserva - Cancelar Reserva");
@@ -668,6 +681,69 @@ public class Main {
 		p.ver(s.cancelarReserva(6, "Tacuarembó", "NH-Columbia"), Sistema.TipoRet.ERROR_3,
 				"No se canceló la reserva para el cliente '6'. No existe la ciudad en el sistema.");
 
+	}
+
+	// Prueba ERROR para Listar servicios
+	public static void PruebaERROR_ListarServicios(Sistema s, Prueba p) {
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
+
+		p.ver(s.ingresarServicio("Montevideo", "NH-Columbia", "Lavado de ropa"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Lavado de ropa' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Salto", "NH-Columbia", "Desayuno"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Desayuno' al hotel 'NH-Columbia' de la ciudad 'Salto'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Desayuno"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Merienda' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Cena"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Cena' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Piscina"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Piscina' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Montevideo", "Radisson", "Lavado de ropa"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Lavado de ropa' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarServicio("Salto", "NH-Columbia", "Casino"), Sistema.TipoRet.OK,
+				"Se agregó el servicio 'Casino' al hotel 'NH-Columbia' de la ciudad 'Salto'");
+
+		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Montevideo'");
+		p.ver(s.borrarServicio("Montevideo", "Radisson", "Cena"), Sistema.TipoRet.OK,
+				"Se borró el servicio 'Cena' del hotel 'Radisson' en 'Montevideo'");
+		p.ver(s.listarServicios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Montevideo'");
+
+		p.ver(s.listarServicios("Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'NH-Columbia' en 'Salto'");
+		p.ver(s.listarServicios("Colonia", "Radisson"), Sistema.TipoRet.OK,
+				"Listar Servicios del hotel 'Radisson' en 'Colonia'");
+
+		// 1. En caso que no exista el hotel “Hotel” registrado en la ciudad
+		// “Ciudad”.
+		p.tituloPrueba("PruebaERROR_ListarServicios -  No existe el hotel en la ciudad");
+
+		p.ver(s.listarServicios("Colonia", "NH-Columbia"), Sistema.TipoRet.ERROR_1,
+				"No existe el hotel 'NH-Columbia' en la ciudad de 'Colonia'");
+		p.ver(s.listarServicios("Colonia", "Quiroga"), Sistema.TipoRet.ERROR_1,
+				"No existe el hotel 'Quiroga' en la ciudad de 'Colonia'");
+
+		// 2. En caso que no exista la ciudad “Ciudad”.
+		p.tituloPrueba("PruebaERROR_ListarServicios -  No existe la ciudad");
+		p.ver(s.listarServicios("Rivera", "NH-Columbia"), Sistema.TipoRet.ERROR_2, "No existe la ciudad en el sistema");
+		p.ver(s.listarServicios("Tacuarembó", "Quiroga"), Sistema.TipoRet.ERROR_2, "No existe la ciudad en el sistema");
 	}
 
 	// public static void PruebaOK_1(Sistema s, Prueba p) {

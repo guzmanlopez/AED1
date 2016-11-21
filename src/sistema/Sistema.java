@@ -120,8 +120,15 @@ public class Sistema implements ISistema {
 		else {
 
 			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
+			// Ingresar servicio al hotel que está en la lista de hoteles de la
+			// ciudad
 			Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
 			recuperarH.ingresarServicio(servicio);
+			// Ingresar servicio al hotel que está en la lista de hoteles del
+			// sistema
+			Hotel recuperarHenLista = (Hotel) this.hoteles.recuperar(h);
+			recuperarHenLista.ingresarServicio(servicio);
+
 			return TipoRet.OK;
 		}
 	}
@@ -159,7 +166,14 @@ public class Sistema implements ISistema {
 			return TipoRet.ERROR_2;
 		}
 
+		// Borrar servicio del hotel que está en la lista de hoteles de la
+		// ciudad
 		recuperarH.borrarServicio(servicio);
+		// Borrar servicio del hotel que está en la lista de hoteles del
+		// sistema
+		Hotel recuperarHenLista = (Hotel) this.hoteles.recuperar(h);
+		recuperarHenLista.borrarServicio(servicio);
+		
 		return TipoRet.OK;
 	}
 
@@ -282,19 +296,21 @@ public class Sistema implements ISistema {
 			return TipoRet.ERROR_1;
 		}
 
+		// Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
+		// Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
 		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
-		String servicios = recuperarH.listarServicios(ciudad, hotel);
 
-		ILista servicios = recuperarH.getServicios();
+		ILista listaServicios = recuperarH.getServicios();
 
-		if (servicios.largo() == 0)
-			System.out.println("No existen servicios registrados en el hotel " + recuperarH.getNombre()
+		if (listaServicios.largo() == 0)
+			System.out.println("No existen servicios registrados en el hotel " + recuperarH.getNombre() + " "
 					+ recuperarH.getCiudad() + ".");
 		else {
 			int contador = 1;
-			System.out.println(recuperarH.getServicios());
-			for (Object servicio : servicios)
-				System.out.println(contador++ + " - " + (String) servicio);
+			System.out.println(
+					"Servicios del Hotel " + recuperarH.getNombre() + " " + recuperarH.getCiudad() + ":" + "\n");
+			for (Object servicio : listaServicios)
+				System.out.println(contador++ + " - " + (String) servicio.toString());
 		}
 
 		return TipoRet.OK;
