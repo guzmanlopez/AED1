@@ -16,9 +16,12 @@ public class Espera {
 
 	// Constructor
 	public Espera(Integer idCliente) {
-
 		this.cliente = new Cliente(idCliente);
-
+	}
+	
+	@Override
+	public String toString() {
+		return this.cliente.getId().toString();
 	}
 
 }

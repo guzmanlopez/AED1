@@ -74,7 +74,7 @@ public class Prueba {
 		System.out.println("  +-----------------------------------+  ");
 		System.out.println("  |  	RESULTADOS DE LA PRUEBA       |");
 		System.out.println("  +-----------------------------------+  ");
-		System.out.println("  |  	Pruebas Correctas: " + cantCorrectas + "        |");
+		System.out.println("  |  	Pruebas Correctas:  " + cantCorrectas + "        |");
 		System.out.println("  |  	Pruebas Incorrectas: " + cantIncorrectas + "        |");
 		System.out.println("  |  	Pruebas No Implementadas: " + cantNoImplementadas + "   |");
 		System.out.println("  +-----------------------------------+  ");

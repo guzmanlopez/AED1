@@ -395,7 +395,40 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRet listarEspera(String ciudad, String hotel) {
-		return TipoRet.NO_IMPLEMENTADA;
+
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_2;
+		}
+
+		// En caso que no exista un hotel “Hotel” registrado dentro de la ciudad
+		// “Ciudad”
+		Hotel h = new Hotel(hotel, ciudad);
+		boolean existeH = this.hoteles.existe(h);
+
+		if (!existeH) {
+			return TipoRet.ERROR_1;
+		}
+
+		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
+		ILista listaEspera = recuperarH.getEsperas();
+
+		if (listaEspera.largo() == 0)
+			System.out.println("No existen reservas pendientes para el hotel " + recuperarH.getNombre() + " "
+					+ recuperarH.getCiudad() + "." + "\n");
+		else {
+			int contador = 1;
+			System.out.println(
+					"Lista de espera para el hotel " + recuperarH.getNombre() + " " + recuperarH.getCiudad() + ": " + "\n");
+			for (Object espera : listaEspera)
+				System.out.println(contador++ + " - " + (String) espera.toString());
+		}
+
+		return TipoRet.OK;
+
 	}
 
 	@Override
