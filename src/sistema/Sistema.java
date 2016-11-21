@@ -92,7 +92,7 @@ public class Sistema implements ISistema {
 				// Agregar hotel a la ciudad
 				recuperarC.ingresarHotel(nombre, ciudad);
 
-				// Agregar hotel a la lista de hoteles
+				// Agregar hotel a la lista de hoteles en el sistema
 				this.hoteles.insertar(h);
 				return TipoRet.OK;
 			}
@@ -421,8 +421,8 @@ public class Sistema implements ISistema {
 					+ recuperarH.getCiudad() + "." + "\n");
 		else {
 			int contador = 1;
-			System.out.println(
-					"Lista de espera para el hotel " + recuperarH.getNombre() + " " + recuperarH.getCiudad() + ": " + "\n");
+			System.out.println("Lista de espera para el hotel " + recuperarH.getNombre() + " " + recuperarH.getCiudad()
+					+ ": " + "\n");
 			for (Object espera : listaEspera)
 				System.out.println(contador++ + " - " + (String) espera.toString());
 		}

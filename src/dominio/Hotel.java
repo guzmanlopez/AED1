@@ -10,7 +10,8 @@ public class Hotel {
 	private String nombre;
 	private Ciudad ciudad;
 	private int capacidad;
-	private int categoria;
+	private int estrellas;
+	private float rankingHotel;
 
 	private ILista comentarios = new ListaSEIni();
 	private ILista servicios = new ListaSEIni();
@@ -48,11 +49,11 @@ public class Hotel {
 	}
 
 	public Integer getCategoria() {
-		return this.categoria;
+		return this.estrellas;
 	}
 
 	public void setCategoria(Integer categoria) {
-		this.categoria = categoria;
+		this.estrellas = categoria;
 	}
 
 	public ILista getComentarios() {
@@ -94,7 +95,8 @@ public class Hotel {
 		this.nombre = nombre;
 		this.ciudad = new Ciudad(ciudad);
 		this.capacidad = capacidad;
-		this.categoria = categoria;
+		this.estrellas = categoria;
+		this.rankingHotel = 0;
 
 	}
 
@@ -148,7 +150,7 @@ public class Hotel {
 
 		else {
 			ingresarEspera(cliente);
-			System.out.println("A lista de espera");
+			// System.out.println("A lista de espera");
 		}
 	}
 
@@ -193,6 +195,17 @@ public class Hotel {
 	public void borrarespera(Integer idCliente) {
 		Espera nuevaE = new Espera(idCliente);
 		this.esperas.borrar(nuevaE);
+	}
+
+	private void actualizarRankingHotel() {
+
+		float rankingTotal = 0;
+
+		for (Object comentario : this.comentarios) {
+			Comentario c = (Comentario) comentario;
+			rankingTotal += c.getRanking();
+		}
+		this.rankingHotel = rankingTotal / this.comentarios.largo();
 	}
 
 	// ***** Sobreescrituras ***** //
