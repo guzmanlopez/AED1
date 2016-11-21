@@ -205,7 +205,13 @@ public class Sistema implements ISistema {
 
 			Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
 			Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
+			// Agregar comentario al hotel en la lista de hoteles de la ciudad
 			recuperarH.ingresarComentario(ciudad, hotel, comentario, ranking);
+
+			// Agregar comentario al hotel en la lista de hoteles del sistema
+			Hotel recuperarHenS = (Hotel) this.hoteles.recuperar(h);
+			recuperarHenS.ingresarComentario(ciudad, hotel, comentario, ranking);
+
 			return TipoRet.OK;
 		}
 	}
@@ -352,7 +358,39 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRet listarComentarios(String ciudad, String hotel) {
-		return TipoRet.NO_IMPLEMENTADA;
+
+		Ciudad c = new Ciudad(ciudad);
+		boolean existeC = this.ciudades.existe(c);
+
+		// En caso que no exista la ciudad “Ciudad”.
+		if (!existeC) {
+			return TipoRet.ERROR_2;
+		}
+
+		// En caso que no exista un hotel “Hotel” registrado dentro de la ciudad
+		// “Ciudad”
+		Hotel h = new Hotel(hotel, ciudad);
+		boolean existeH = this.hoteles.existe(h);
+
+		if (!existeH) {
+			return TipoRet.ERROR_1;
+		}
+
+		// Ciudad recuperarC = (Ciudad) this.ciudades.recuperar(c);
+		// Hotel recuperarH = (Hotel) recuperarC.getHoteles().recuperar(h);
+		Hotel recuperarH = (Hotel) this.hoteles.recuperar(h);
+		ILista listaComentarios = recuperarH.getComentarios();
+
+		if (listaComentarios.largo() == 0)
+			System.out.println("No se han agregado comentarios al hotel " + recuperarH.getNombre() + " "
+					+ recuperarH.getCiudad() + "." + "\n");
+		else {
+			int contador = 1;
+			for (Object comentario : listaComentarios)
+				System.out.println(contador++ + " - " + (String) comentario.toString());
+		}
+		return TipoRet.OK;
+
 	}
 
 	@Override

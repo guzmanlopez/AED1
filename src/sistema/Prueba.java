@@ -38,10 +38,14 @@ public class Prueba {
 
 		if (TipoRet == TipoRetEsperado) {
 			System.out.println("");
+			System.out.println("                              ------");
 			System.out.println("------------------------------| OK |---------------------------------");
+			System.out.println("                              ------");
 		} else {
 			System.out.println("");
+			System.out.println("                            ---------");
 			System.out.println("----------------------------| ERROR |--------------------------------");
+			System.out.println("                            ---------");
 			System.out.println("");
 			System.out.println(
 					"  TipoRet de la app.: " + TipoRet + " / Se esperaba: " + getStringTipoRet(TipoRetEsperado));
@@ -67,12 +71,13 @@ public class Prueba {
 
 	void imprimirResultadosPrueba() {
 		System.out.println();
-		System.out.println("  +------------------------------+");
-		System.out.println("    RESULTADOS DE LA PRUEBA    ");
-		System.out.println("    Pruebas Correctas: " + cantCorrectas);
-		System.out.println("    Pruebas Incorrectas: " + cantIncorrectas);
-		System.out.println("    Pruebas No Implementadas: " + cantNoImplementadas);
-		System.out.println("  +------------------------------+");
+		System.out.println("  +-----------------------------------+  ");
+		System.out.println("  |  	RESULTADOS DE LA PRUEBA       |");
+		System.out.println("  +-----------------------------------+  ");
+		System.out.println("  |  	Pruebas Correctas: " + cantCorrectas + "        |");
+		System.out.println("  |  	Pruebas Incorrectas: " + cantIncorrectas + "        |");
+		System.out.println("  |  	Pruebas No Implementadas: " + cantNoImplementadas + "   |");
+		System.out.println("  +-----------------------------------+  ");
 		System.out.println();
 	}
 
@@ -84,6 +89,7 @@ public class Prueba {
 		System.out.println("  " + s);
 		System.out.println(
 				"********************************************************************************************************");
+		System.out.println();
 	}
 
 	public static void finPrueba(String s) {
@@ -91,6 +97,5 @@ public class Prueba {
 				.println("**************************************** " + s + " ***************************************");
 		System.out.println(
 				"********************************************************************************************************");
-		System.out.println();
 	}
 }

@@ -124,14 +124,14 @@ public class Hotel {
 	// pre: el servicio no existe en ILista servicios
 	// pos: el servicio es agregado a ILista servicios
 	public void ingresarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
-		Comentario nuevoC = new Comentario(comentario);
+		Comentario nuevoC = new Comentario(comentario, ranking);
 		this.comentarios.insertar(nuevoC);
 	}
 
 	// pre: el servicio existe en ILista servicios
 	// pos: el servicio es borrado de ILista servicios
 	public void borrarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
-		Comentario borrarC = new Comentario(comentario);
+		Comentario borrarC = new Comentario(comentario, ranking);
 		this.comentarios.borrar(borrarC);
 	}
 

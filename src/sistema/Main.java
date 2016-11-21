@@ -10,29 +10,31 @@ public class Main {
 
 		// ---------------------- PRUEBAS OK --------------------------//
 
-		// PruebaOK_CrearSistemaReservas(s, p);
-		// PruebaOK_DestruirSistemaReservas(s, p);
-		// PruebaOK_RegistrarCiudad(s, p);
-		// PruebaOK_RegistrarHotel(s, p);
-		// PruebaOK_IngresarServicio(s, p);
-		// PruebaOK_BorrarServicio(s, p);
-		// PruebaOK_IngresarComentario(s, p);
-		// PruebaOK_RealizarReserva(s, p);
-		// PruebaOK_CancelarReserva(s, p);
-		// PruebaOK_ListarServicios(s, p);
-		// PruebaOK_ListarHotelesCiudad(s, p);
+		PruebaOK_CrearSistemaReservas(s, p);
+		PruebaOK_DestruirSistemaReservas(s, p);
+		PruebaOK_RegistrarCiudad(s, p);
+		PruebaOK_RegistrarHotel(s, p);
+		PruebaOK_IngresarServicio(s, p);
+		PruebaOK_BorrarServicio(s, p);
+		PruebaOK_IngresarComentario(s, p);
+		PruebaOK_RealizarReserva(s, p);
+		PruebaOK_CancelarReserva(s, p);
+		PruebaOK_ListarServicios(s, p);
+		PruebaOK_ListarHotelesCiudad(s, p);
+		PruebaOK_ListarComentarios(s, p);
 
 		// ---------------------- PRUEBAS ERROR -----------------------//
 
-		// PruebaERROR_RegistrarCiudad(s, p);
-		// PruebaERROR_RegistrarHotel(s, p);
-		// PruebaERROR_IngresarServicio(s, p);
-		// PruebaERROR_BorrarServicio(s, p);
-		// PruebaERROR_IngresarComentario(s, p);
-		// PruebaERROR_RealizarReserva(s, p);
-		// PruebaERROR_CancelarReserva(s, p);
-		// PruebaERROR_ListarServicios(s, p);
+		PruebaERROR_RegistrarCiudad(s, p);
+		PruebaERROR_RegistrarHotel(s, p);
+		PruebaERROR_IngresarServicio(s, p);
+		PruebaERROR_BorrarServicio(s, p);
+		PruebaERROR_IngresarComentario(s, p);
+		PruebaERROR_RealizarReserva(s, p);
+		PruebaERROR_CancelarReserva(s, p);
+		PruebaERROR_ListarServicios(s, p);
 		PruebaERROR_ListarHotelesCiudad(s, p);
+		PruebaERROR_ListarComentarios(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION -----------------------//
 
@@ -41,7 +43,7 @@ public class Main {
 		// PruebaMOD_RegistrarCiudad(s, p);
 		// PruebaMOD_RegistrarHotel(s, p);
 		// PruebaMOD_IngresarServicio(s, p);
-
+		p.imprimirResultadosPrueba();
 	}
 
 	// ********** PRUEBAS OK ********** //
@@ -349,7 +351,7 @@ public class Main {
 		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
 		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
 		p.ver(s.registrarCiudad("Maldonado"), Sistema.TipoRet.OK, "Se agregó 'Maldonado' al mapa");
-		
+
 		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
 		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
@@ -368,7 +370,46 @@ public class Main {
 		p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Colonia'");
 		p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Maldonado'");
 
+	}
 
+	// Prueba OK para Listar Comentarios
+	public static void PruebaOK_ListarComentarios(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaOK_ListarComentarios - Listar Comentarios");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+
+		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Excelente servicio y atención' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 3),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Cena muy temprana y poco abundante' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "La piscina tiene una temperatura ideal!", 5),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'La piscina tiene una temperatura ideal!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+
+		p.ver(s.listarComentarios("Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'NH-Columbia' en 'Salto'");
+		p.ver(s.listarComentarios("Montevideo", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'NH-Columbia' en 'Montevideo'");
+		p.ver(s.listarComentarios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'Radisson' en 'Montevideo'");
 	}
 
 	// ********** PRUEBAS ERROR ********** //
@@ -782,7 +823,7 @@ public class Main {
 		p.ver(s.listarServicios("Tacuarembó", "Quiroga"), Sistema.TipoRet.ERROR_2, "No existe la ciudad en el sistema");
 	}
 
-	// Prueba OK para Listar Hoteles
+	// Prueba ERROR para Listar Hoteles
 	public static void PruebaERROR_ListarHotelesCiudad(Sistema s, Prueba p) {
 
 		p.tituloPrueba("PruebaERROR_ListarHotelesCiudad - Listar Hoteles en la Ciudad");
@@ -813,7 +854,6 @@ public class Main {
 		p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Colonia'");
 		p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Maldonado'");
 
-
 		p.tituloPrueba("PruebaERROR_ListarHotelesCiudad - No existe la ciudad");
 
 		p.ver(s.listarHotelesCiudad("Rivera"), Sistema.TipoRet.ERROR_1, "No existe la ciudad en el sistema");
@@ -822,118 +862,65 @@ public class Main {
 
 	}
 
-	// public static void PruebaOK_1(Sistema s, Prueba p) {
-	//
-	// s.crearSistemaReservas(20);
-	// System.out.println("Se crea el sistema de reservas vacio");
-	//
-	// p.tituloPrueba("PRUEBA OK 1 - casos base");
-	// p.tituloPrueba("PRUEBA OK 1 - Agregar ciudades al mapa:");
-	//
-	// p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agrego
-	// Montevideo al mapa");
-	// p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agrego
-	// Colonia al mapa");
-	// p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agrego Salto al
-	// mapa");
-	// p.ver(s.registrarCiudad("Rivera"), Sistema.TipoRet.OK, "Se agrego Rivera
-	// al mapa");
-	// p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.ERROR_1, "Se
-	// intento agregar Montevideo que ya existe");
-	//
-	// p.tituloPrueba("PRUEBA OK 1 - REGISTRAR HOTEL");
-	// p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-NH-Columbia");
-	// p.ver(s.registrarHotel("Montevideo", "Holiday Inn", 4, 90),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Holiday Inn");
-	// p.ver(s.registrarHotel("Montevideo", "Ibis", 3, 60), Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Ibis");
-	// p.ver(s.registrarHotel("Montevideo", "Cottage", 4, 90),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Radison Victoria Plaza");
-	// p.ver(s.registrarHotel("Montevideo", "Sheraton", 5, 540),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Sheraton");
-	// p.ver(s.registrarHotel("Montevideo", "Victoria Plaza", 5, 320),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Radison Victoria Plaza");
-	//
-	// p.tituloPrueba("2.10 LISTADO DE HOTELES POR CIUDAD");
-	// p.ver(s.listarHotelesCiudad("Montevideo"), Sistema.TipoRet.OK, "");
-	// p.ver(s.listarHotelesCiudad("Artigas"), Sistema.TipoRet.OK, "Listado de
-	// hoteles en Artigas");
-	// s.destruirSistemaReservas();
-	// }
-	//
-	// public static void PruebaOK_2(Sistema s, Prueba p) {
-	//
-	// s.crearSistemaReservas(20);
-	// System.out.println("Se crea el sistema de reservas vacio");
-	//
-	// p.tituloPrueba("PRUEBA OK 2");
-	// p.tituloPrueba("2.3 REGISTRAR HOTEL");
-	//
-	// p.ver(s.registrarHotel("Montevideo", "Victoria Plaza", 5, 320),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Radison Victoria Plaza");
-	// p.ver(s.registrarHotel("Colonia", "Sheraton", 5, 540),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Colonia-Sheraton");
-	// p.ver(s.registrarHotel("Maldonado", "Mantra", 5, 120),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Maldonado-Mantra");
-	// p.ver(s.registrarHotel("Maldonado", "Conrad", 5, 320),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Maldonado-Conrad");
-	// p.ver(s.registrarHotel("Colonia", "Barcel�", 5, 90), Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Colonia-Barcel�");
-	// p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-NH-Columbia");
-	// p.ver(s.registrarHotel("Montevideo", "Ibis", 3, 60), Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Montevideo-Ibis");
-	// p.ver(s.registrarHotel("Salto", "Horacio Quiroga", 5, 70),
-	// Sistema.TipoRet.OK,
-	// "Se agreg� el hotel Salto-Horacio Quiroga");
-	//
-	// p.tituloPrueba("2.10 LISTADO DE HOTELES POR CIUDAD");
-	// p.ver(s.listarHotelesCiudad("Montevideo"), Sistema.TipoRet.OK, "");
-	// p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "");
-	// p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "");
-	//
-	// p.tituloPrueba("2.4 INGRESAR SERVICIO");
-	// p.ver(s.ingresarServicio("Montevideo", "Ibis", "wifi"),
-	// Sistema.TipoRet.OK,
-	// "Se ingres� servicio wifi en Montevideo-Ibis");
-	// p.ver(s.ingresarServicio("Montevideo", "Ibis", "valet parking"),
-	// Sistema.TipoRet.OK,
-	// "Se ingres� servicio valet parking en Montevideo-Ibis");
-	// p.ver(s.ingresarServicio("Montevideo", "Ibis", "tintoreria"),
-	// Sistema.TipoRet.OK,
-	// "Se ingres� servicio tintoreria en Montevideo-Ibis");
-	// p.ver(s.ingresarServicio("Montevideo", "Ibis", "piscina"),
-	// Sistema.TipoRet.OK,
-	// "Se ingres� servicio piscina en Montevideo-Ibis");
-	//
-	// p.tituloPrueba("2.9 LISTAR SERVICIOS");
-	// p.ver(s.listarServicios("Montevideo", "Ibis"), Sistema.TipoRet.OK,
-	// "Se imprimi� Lista de Servicios de Montevideo-Ibis");
-	//
-	// p.tituloPrueba("2.5 BORRAR SERVICIOS");
-	// p.ver(s.borrarServicio("Montevideo", "Ibis", "valet parking"),
-	// Sistema.TipoRet.OK,
-	// "Se borr� servicio valet parking de Montevideo-Ibis");
-	// p.ver(s.borrarServicio("Montevideo", "Ibis", "piscina"),
-	// Sistema.TipoRet.OK,
-	// "Se borr� servicio piscina de Montevideo-Ibis");
-	// p.ver(s.borrarServicio("Montevideo", "Ibis", "wifi"), Sistema.TipoRet.OK,
-	// "Se borr� servicio wifi de Montevideo-Ibis");
-	//
-	// p.ver(s.listarServicios("Montevideo", "Ibis"), Sistema.TipoRet.OK,
-	// "Se imprimi� Lista de Servicios de Montevideo-Ibis");
-	// s.destruirSistemaReservas();
-	// }
+	// Prueba ERROR para Listar Comentarios
+	public static void PruebaERROR_ListarComentarios(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaERROR_ListarComentarios - Listar Comentarios");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Salto", "Quiroga", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Quiroga' a la ciudad 'Salto'");
+
+		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Excelente servicio y atención' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 3),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Cena muy temprana y poco abundante' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "La piscina tiene una temperatura ideal!", 5),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'La piscina tiene una temperatura ideal!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Salto", "Quiroga", "La piscinas están muy limpias", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'La piscinas están muy limpias' al hotel 'Quiroga' de la ciudad 'Salto'");
+
+		p.ver(s.listarComentarios("Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'NH-Columbia' en 'Salto'");
+		p.ver(s.listarComentarios("Montevideo", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'NH-Columbia' en 'Montevideo'");
+		p.ver(s.listarComentarios("Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Listar comentarios del hotel 'Radisson' en 'Montevideo'");
+
+		// 1. En caso que no exista el hotel “Hotel” registrado en la ciudad
+		// “Ciudad”.
+		p.tituloPrueba("PruebaERROR_ListarComentarios - No existe el hotel en la ciudad");
+		p.ver(s.listarComentarios("Salto", "Radisson"), Sistema.TipoRet.ERROR_1,
+				"No existe el hotel 'Radisson' en 'Salto'");
+		p.ver(s.listarComentarios("Colonia", "Quiroga"), Sistema.TipoRet.ERROR_1,
+				"No existe el hotel 'Quiroga' en 'Colonia'");
+
+		// 2. En caso que no exista la ciudad “Ciudad”.
+		p.tituloPrueba("PruebaERROR_ListarComentarios - No existe la ciudad");
+		p.ver(s.listarComentarios("Rivera", "Radisson"), Sistema.TipoRet.ERROR_2,
+				"No existe la ciudad de 'Rivera' en el sistema");
+		p.ver(s.listarComentarios("Tacuarembó", "Quiroga"), Sistema.TipoRet.ERROR_2,
+				"No existe la ciudad de 'Tacuarembó' en el sistema");
+
+		s.destruirSistemaReservas();
+	}
 
 }
