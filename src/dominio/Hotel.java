@@ -71,16 +71,16 @@ public class Hotel {
 		return this.comentarios;
 	}
 
-	public void setComentarios(Comentario comentario) {
-		this.comentarios.agregarInicio(comentario);
+	public void setComentarios(ILista comentarios) {
+		this.comentarios = comentarios;
 	}
 
 	public ILista getServicios() {
 		return this.servicios;
 	}
 
-	public void setServicios(Servicio servicio) {
-		this.servicios.agregarInicio(servicio);
+	public void setServicios(ILista servicios) {
+		this.servicios = servicios;
 	}
 
 	public ILista getReservas() {
@@ -95,8 +95,8 @@ public class Hotel {
 		return this.esperas;
 	}
 
-	public void setEsperas(Espera espera) {
-		this.reservas.agregarInicio(espera);
+	public void setEsperas(ICola esperas) {
+		this.esperas = esperas;
 	}
 
 	// ***** Constructor *****//
@@ -156,9 +156,8 @@ public class Hotel {
 		Reserva nuevaR = new Reserva(cliente, ciudad, hotel);
 
 		// Capacidad
-		if (this.capacidad >= 1) {
+		if (this.reservas.cantidadElementos() < this.capacidad) {
 			this.reservas.agregarInicio(nuevaR);
-			this.capacidad = this.capacidad - 1;
 		}
 
 		else {
@@ -186,13 +185,6 @@ public class Hotel {
 			this.esperas.dequeue();
 
 		}
-
-		else {
-
-			// Capacidad
-			this.capacidad = this.capacidad + 1;
-
-		}
 	}
 
 	// pre: la espera no existe en ICola esperas
@@ -208,7 +200,7 @@ public class Hotel {
 	public void borrarEspera(Integer idCliente) {
 		Espera nuevaE = new Espera(idCliente);
 		this.esperas.borrarElemento(nuevaE);
-//		this.esperas.dequeue();
+		// this.esperas.dequeue();
 	}
 
 	private void actualizarRankingHotel() {
@@ -219,11 +211,6 @@ public class Hotel {
 			Comentario comentario = (Comentario) this.comentarios.obtenerElementoI(i);
 			rankingTotal += comentario.getRanking();
 		}
-
-		// for (Object comentario : this.comentarios) {
-		// Comentario c = (Comentario) comentario;
-		// rankingTotal += c.getRanking();
-		// }
 
 		this.rankingHotel = rankingTotal / this.comentarios.cantidadElementos();
 	}

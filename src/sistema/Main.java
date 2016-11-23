@@ -1,5 +1,7 @@
 package sistema;
 
+import estructuras.QuickSort;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -16,13 +18,13 @@ public class Main {
 		// PruebaOK_RegistrarHotel(s, p);
 		// PruebaOK_IngresarServicio(s, p);
 		// PruebaOK_BorrarServicio(s, p);
-		PruebaOK_IngresarComentario(s, p);
-		PruebaOK_RealizarReserva(s, p);
-		PruebaOK_CancelarReserva(s, p);
-		PruebaOK_ListarServicios(s, p);
-		PruebaOK_ListarHotelesCiudad(s, p);
-		PruebaOK_ListarComentarios(s, p);
-		PruebaOK_ListarEspera(s, p);
+		// PruebaOK_IngresarComentario(s, p);
+		// PruebaOK_RealizarReserva(s, p);
+		// PruebaOK_CancelarReserva(s, p);
+		// PruebaOK_ListarServicios(s, p);
+		// PruebaOK_ListarHotelesCiudad(s, p);
+		// PruebaOK_ListarComentarios(s, p);
+		// PruebaOK_ListarEspera(s, p);
 
 		// PruebaOK_1(s, p);
 		// PruebaOK_2(s, p);
@@ -53,7 +55,26 @@ public class Main {
 		// PruebaERROR_7(s, p);
 
 		// ------------------- IMPRIMIR RESULTADO PRUEBAS ------------------ //
-		p.imprimirResultadosPrueba();
+		 p.imprimirResultadosPrueba();
+
+		// QuickSort();
+	}
+
+	public static void QuickSort() {
+
+		int[] vector = { 1, 3, 6, 8, 9, 2, 3, 4, 6, 5 };
+		QuickSort.quickSort2(vector, 0, 9);
+		System.out.println(vector[0]);
+		System.out.println(vector[1]);
+		System.out.println(vector[2]);
+		System.out.println(vector[3]);
+		System.out.println(vector[4]);
+		System.out.println(vector[5]);
+		System.out.println(vector[6]);
+		System.out.println(vector[7]);
+		System.out.println(vector[8]);
+		System.out.println(vector[9]);
+
 	}
 
 	// ********** PRUEBAS OK ********** //
