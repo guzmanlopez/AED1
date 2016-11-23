@@ -22,20 +22,20 @@ public class ColaDinamica implements ICola {
 	@Override
 	public void enqueue(Object o) {
 		NodoCola nodoCola = new NodoCola(o);
-		if (cola != null) {
-			cola.setSiguiente(nodoCola);
-			cola = cola.getSiguiente();
+		if (this.cola != null) {
+			this.cola.setSiguiente(nodoCola);
+			this.cola = this.cola.getSiguiente();
 		} else
-			frente = cola = nodoCola;
-		largo++;
+			this.frente = this.cola = nodoCola;
+		this.largo++;
 	}
 
 	@Override
 	public void dequeue() {
-		frente = frente.getSiguiente();
-		if (frente == null)
-			cola = null;
-		largo--;
+		this.frente = this.frente.getSiguiente();
+		if (this.frente == null)
+			this.cola = null;
+		this.largo--;
 	}
 
 	@Override
@@ -49,12 +49,9 @@ public class ColaDinamica implements ICola {
 		if (this.esVacia()) {
 			return null;
 		}
-
 		if (this.cantidadElementos() == 1) {
 			return this.frente.getDato();
-		}
-
-		else {
+		} else {
 			Integer ite = 0;
 			while (aux.getSiguiente() != null && ite <= i) {
 				if (ite == i) {
@@ -68,7 +65,7 @@ public class ColaDinamica implements ICola {
 	}
 
 	@Override
-	public Object frontAndDequeue() {
+	public Object obtenerPrimerElementoYDequeue() {
 		Object ret = obtenerPrimerElemento();
 		dequeue();
 		return ret;
@@ -97,6 +94,40 @@ public class ColaDinamica implements ICola {
 		return this.tope != -1 && this.largo == tope;
 	}
 
+	@Override
+	public boolean existeElemento(Object o) {
+		NodoCola aux = this.frente;
+		while (aux != null) {
+			if (aux.getDato().equals(o))
+				return true;
+			else
+				aux = aux.getSiguiente();
+		}
+		return false;
+	}
+
+	@Override
+	public void borrarElemento(Object o) {
+		if (this.frente.getDato().equals(o)) {
+			this.frente = this.frente.getSiguiente();
+			this.largo--;
+			if (this.frente == null)
+				this.cola = null;
+		} else {
+			NodoCola aux = this.frente;
+			while (aux.getSiguiente() != null) {
+				if (aux.getSiguiente().getDato().equals(o)) {
+					aux.setSiguiente(aux.getSiguiente().getSiguiente());
+					this.largo--;
+					if (aux.getSiguiente() == null)
+						this.cola = aux;
+					return;
+				} else
+					aux = aux.getSiguiente();
+			}
+		}
+	}
+
 	// @Override
 	// public Iterator<Object> iterator() {
 	// return new Iterator<Object>() {
@@ -122,37 +153,4 @@ public class ColaDinamica implements ICola {
 	// };
 	// }
 
-	@Override
-	public boolean existeElemento(Object o) {
-		NodoCola aux = frente;
-		while (aux != null) {
-			if (aux.getDato().equals(o))
-				return true;
-			else
-				aux = aux.getSiguiente();
-		}
-		return false;
-	}
-
-	@Override
-	public void borrarElemento(Object o) {
-		if (frente.getDato().equals(o)) {
-			frente = frente.getSiguiente();
-			largo--;
-			if (frente == null)
-				cola = null;
-		} else {
-			NodoCola aux = frente;
-			while (aux.getSiguiente() != null) {
-				if (aux.getSiguiente().getDato().equals(o)) {
-					aux.setSiguiente(aux.getSiguiente().getSiguiente());
-					largo--;
-					if (aux.getSiguiente() == null)
-						cola = aux;
-					return;
-				} else
-					aux = aux.getSiguiente();
-			}
-		}
-	}
 }

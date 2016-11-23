@@ -12,7 +12,7 @@ public interface ICola {
 	public Object obtenerPrimerElemento();
 
 	// Pre: !isEmpty()
-	public Object frontAndDequeue();
+	public Object obtenerPrimerElementoYDequeue();
 
 	public int cantidadElementos();
 

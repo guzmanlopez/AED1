@@ -182,7 +182,7 @@ public class Hotel {
 			Reserva r = new Reserva(e.getCliente().getId(), ciudad, hotel);
 			// Agrego la reserva a la lista de reservas del hotel
 			this.reservas.agregarInicio(r);
-			// Borro la espera
+			// Corro la lista de espera
 			this.esperas.dequeue();
 
 		}
@@ -203,8 +203,8 @@ public class Hotel {
 		this.esperas.enqueue(nuevaE);
 	}
 
-	// pre: la reserva existe en ILista reservas
-	// pos: la reserva es borrada de ILista reservas
+	// pre: la espera existe en ICola esperas
+	// pos: la espera es borrada de ICola esperas
 	public void borrarEspera(Integer idCliente) {
 		Espera nuevaE = new Espera(idCliente);
 		this.esperas.borrarElemento(nuevaE);
