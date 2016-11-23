@@ -1,5 +1,7 @@
 package dominio;
 
+import estructuras.ColaDinamica;
+import estructuras.ICola;
 import estructuras.ILista;
 import estructuras.ListaSEIni;
 
@@ -17,6 +19,7 @@ public class Hotel {
 	private ILista servicios = new ListaSEIni();
 	private ILista reservas = new ListaSEIni();
 	private ILista esperas = new ListaSEIni();
+	// private ICola esperas = new ColaDinamica();
 
 	// ***** Métodos de acceso y modificación *****//
 
