@@ -18,8 +18,8 @@ public class Hotel {
 	private ILista comentarios = new ListaSEIni();
 	private ILista servicios = new ListaSEIni();
 	private ILista reservas = new ListaSEIni();
-	private ILista esperas = new ListaSEIni();
-	// private ICola esperas = new ColaDinamica();
+	// private ILista esperas = new ListaSEIni();
+	private ICola esperas = new ColaDinamica();
 
 	// ***** Métodos de acceso y modificación *****//
 
@@ -91,7 +91,7 @@ public class Hotel {
 		this.reservas.agregarInicio(reserva);
 	}
 
-	public ILista getEsperas() {
+	public ICola getEsperas() {
 		return this.esperas;
 	}
 
@@ -183,7 +183,7 @@ public class Hotel {
 			// Agrego la reserva a la lista de reservas del hotel
 			this.reservas.agregarInicio(r);
 			// Borro la espera
-			this.esperas.borrarElemento(e);
+			this.esperas.dequeue();
 
 		}
 
@@ -200,14 +200,14 @@ public class Hotel {
 	public void ingresarEspera(Integer idCliente) {
 
 		Espera nuevaE = new Espera(idCliente);
-		this.esperas.agregarInicio(nuevaE);
+		this.esperas.enqueue(nuevaE);
 	}
 
 	// pre: la reserva existe en ILista reservas
 	// pos: la reserva es borrada de ILista reservas
 	public void borrarespera(Integer idCliente) {
-		Espera nuevaE = new Espera(idCliente);
-		this.esperas.borrarElemento(nuevaE);
+		// Espera nuevaE = new Espera(idCliente);
+		this.esperas.dequeue();
 	}
 
 	private void actualizarRankingHotel() {

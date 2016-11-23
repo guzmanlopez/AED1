@@ -5,9 +5,9 @@ public class NodoCola {
 	private Object dato;
 	private NodoCola siguiente;
 
-	public NodoCola(Object dato, NodoCola sig) {
+	public NodoCola(Object dato, NodoCola siguiente) {
 		this.dato = dato;
-		this.siguiente = sig;
+		this.siguiente = siguiente;
 	}
 
 	public NodoCola(Object dato) {
@@ -16,7 +16,7 @@ public class NodoCola {
 	}
 
 	public Object getDato() {
-		return dato;
+		return this.dato;
 	}
 
 	public void setDato(Object dato) {
@@ -24,11 +24,11 @@ public class NodoCola {
 	}
 
 	public NodoCola getSiguiente() {
-		return siguiente;
+		return this.siguiente;
 	}
 
-	public void setSiguiente(NodoCola sig) {
-		this.siguiente = sig;
+	public void setSiguiente(NodoCola siguiente) {
+		this.siguiente = siguiente;
 	}
 
 	@Override

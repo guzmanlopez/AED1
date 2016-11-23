@@ -1,6 +1,7 @@
 package estructuras;
 
 public interface ICola {
+	
 	// Pre: !isFull()
 	public void enqueue(Object o);
 
@@ -8,21 +9,23 @@ public interface ICola {
 	public void dequeue();
 
 	// Pre: !isEmpty()
-	public Object front();
+	public Object obtenerPrimerElemento();
 
 	// Pre: !isEmpty()
 	public Object frontAndDequeue();
 
-	public int size();
+	public int cantidadElementos();
 
-	public void empty();
+	public void vaciarLista();
 
-	public boolean isEmpty();
+	public boolean esVacia();
 
-	public boolean isFull();
+	public boolean esLLena();
 
-	public boolean exists(Object o);
+	public boolean existeElemento(Object o);
 
 	// Pre: exists(o)
-	public void remove(Object o);
+	public void borrarElemento(Object o);
+
+	Object obtenerElementoI(Integer i);
 }

@@ -11,7 +11,7 @@ import dominio.Comentario;
 import dominio.Servicio;
 import dominio.Reserva;
 import dominio.Espera;
-
+import estructuras.ICola;
 import estructuras.ILista;
 import estructuras.ListaSEIni;
 
@@ -50,7 +50,6 @@ public class Sistema implements ISistema {
 	public TipoRet registrarCiudad(String ciudad) {
 
 		Ciudad c = new Ciudad(ciudad);
-
 		boolean existeC = this.ciudades.existeElemento(c);
 
 		// 1. En caso que agregar la ciudad “Ciudad” supere el límite
@@ -457,7 +456,7 @@ public class Sistema implements ISistema {
 		}
 
 		Hotel recuperarH = (Hotel) this.hoteles.obtenerElemento(h);
-		ILista listaEspera = recuperarH.getEsperas();
+		ICola listaEspera = recuperarH.getEsperas();
 
 		if (listaEspera.cantidadElementos() == 0)
 			System.out.println("No existen reservas pendientes para el hotel " + recuperarH.getNombre() + " "

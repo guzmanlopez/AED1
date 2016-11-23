@@ -31,9 +31,7 @@ public class Ciudad {
 	// ***** Constructor ***** //
 
 	public Ciudad(String nomCiudad) {
-
 		this.nomCiudad = nomCiudad;
-
 	}
 
 	// ***** Métodos ***** //
@@ -86,7 +84,7 @@ public class Ciudad {
 		if (!this.nomCiudad.equals(otra.nomCiudad)) {
 			ret = false;
 		}
-		
+
 		if (this == obj) {
 			ret = true;
 		}
@@ -98,5 +96,47 @@ public class Ciudad {
 	public String toString() {
 		return this.nomCiudad;
 	}
+
+	// Equals que también compara si paso un String (para no ver las clases
+	// desde Sistema)
+	// @Override
+	// public boolean equals(Object obj) {
+	//
+	// boolean ret = true;
+	//
+	// if (obj == null) {
+	// ret = false;
+	// }
+	//
+	// if (getClass() != obj.getClass()) {
+	//
+	// if (obj.getClass() == this.nomCiudad.getClass()) {
+	//
+	// String otra = (String) obj;
+	//
+	// if (this.nomCiudad != otra) {
+	// ret = false;
+	// }
+	//
+	// } else {
+	//
+	// ret = false;
+	// }
+	//
+	// } else {
+	//
+	// Ciudad otra = (Ciudad) obj;
+	//
+	// if (!this.nomCiudad.equals(otra.nomCiudad)) {
+	// ret = false;
+	// }
+	//
+	// if (this == obj) {
+	// ret = true;
+	// }
+	// }
+	//
+	// return ret;
+	// }
 
 }
