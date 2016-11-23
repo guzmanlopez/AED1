@@ -53,6 +53,13 @@ public class Sistema implements ISistema {
 
 		boolean existeC = this.ciudades.existeElemento(c);
 
+		// 1. En caso que agregar la ciudad “Ciudad” supere el límite
+		// establecido por el sistema
+		
+		if (this.cantCiudades != 0 && this.ciudades.cantidadElementos() == this.cantCiudades) {
+			return TipoRet.ERROR_1;
+		}
+
 		// 1. En caso que la ciudad “Ciudad” ya existe en el sistema.
 		if (existeC) {
 			return TipoRet.ERROR_1;

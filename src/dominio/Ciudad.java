@@ -73,10 +73,6 @@ public class Ciudad {
 
 		boolean ret = true;
 
-		if (this == obj) {
-			ret = true;
-		}
-
 		if (obj == null) {
 			ret = false;
 		}
@@ -90,6 +86,10 @@ public class Ciudad {
 		if (this.nomCiudad != otra.nomCiudad) {
 			ret = false;
 		}
+		
+//		if (this == obj) {
+//			ret = true;
+//		}
 
 		return ret;
 	}
