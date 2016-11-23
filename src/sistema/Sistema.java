@@ -291,10 +291,8 @@ public class Sistema implements ISistema {
 
 		if (existeR) {
 			recuperarH.borrarReservas(cliente, ciudad, hotel);
-		}
-
-		if (existeE) {
-			recuperarH.borrarespera(cliente);
+		} else {
+			recuperarH.borrarEspera(cliente);
 		}
 
 		// System.out.println("Reservas = " +

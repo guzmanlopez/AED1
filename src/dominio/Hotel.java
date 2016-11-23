@@ -195,8 +195,8 @@ public class Hotel {
 		}
 	}
 
-	// pre: la reserva no existe en ILista reservas
-	// pos: la reserva es agregada a ILista reservas
+	// pre: la espera no existe en ICola esperas
+	// pos: la espera es agregada a ICola esperas
 	public void ingresarEspera(Integer idCliente) {
 
 		Espera nuevaE = new Espera(idCliente);
@@ -205,9 +205,10 @@ public class Hotel {
 
 	// pre: la reserva existe en ILista reservas
 	// pos: la reserva es borrada de ILista reservas
-	public void borrarespera(Integer idCliente) {
-		// Espera nuevaE = new Espera(idCliente);
-		this.esperas.dequeue();
+	public void borrarEspera(Integer idCliente) {
+		Espera nuevaE = new Espera(idCliente);
+		this.esperas.borrarElemento(nuevaE);
+//		this.esperas.dequeue();
 	}
 
 	private void actualizarRankingHotel() {
