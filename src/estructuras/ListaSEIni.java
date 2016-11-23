@@ -1,6 +1,6 @@
 package estructuras;
 
-import java.util.Iterator;
+//import java.util.Iterator;
 
 public class ListaSEIni implements ILista {
 
@@ -127,7 +127,6 @@ public class ListaSEIni implements ILista {
 			inicio = inicio.getSiguiente();
 		} else {
 			NodoLista aux = inicio;
-
 			while (aux.getSiguiente() != null) {
 				if (aux.getSiguiente().getDato().equals(dato)) {
 					aux.setSiguiente(aux.getSiguiente().getSiguiente());
@@ -184,16 +183,16 @@ public class ListaSEIni implements ILista {
 		NodoLista aux = inicio;
 		if (this.esVacia()) {
 			return null;
-		} 
-		
-		if(this.cantidadElementos() == 1) {
+		}
+
+		if (this.cantidadElementos() == 1) {
 			return inicio.getDato();
 		}
-		
+
 		else {
 			Integer ite = 0;
 			while (aux.getSiguiente() != null && ite <= i) {
-				if(ite == i) {
+				if (ite == i) {
 					return aux.getDato();
 				}
 				aux = aux.getSiguiente();

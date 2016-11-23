@@ -83,13 +83,13 @@ public class Ciudad {
 
 		Ciudad otra = (Ciudad) obj;
 
-		if (this.nomCiudad != otra.nomCiudad) {
+		if (!this.nomCiudad.equals(otra.nomCiudad)) {
 			ret = false;
 		}
 		
-//		if (this == obj) {
-//			ret = true;
-//		}
+		if (this == obj) {
+			ret = true;
+		}
 
 		return ret;
 	}

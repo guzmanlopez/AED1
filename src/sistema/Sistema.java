@@ -55,9 +55,9 @@ public class Sistema implements ISistema {
 
 		// 1. En caso que agregar la ciudad “Ciudad” supere el límite
 		// establecido por el sistema
-		
+
 		if (this.cantCiudades != 0 && this.ciudades.cantidadElementos() == this.cantCiudades) {
-			return TipoRet.ERROR_1;
+			return TipoRet.ERROR_2;
 		}
 
 		// 1. En caso que la ciudad “Ciudad” ya existe en el sistema.
@@ -280,17 +280,30 @@ public class Sistema implements ISistema {
 
 		// En caso de que el cliente no tenga la reserva en el hotel
 		Reserva r = new Reserva(cliente, ciudad, hotel);
+		Espera e = new Espera(cliente);
 		boolean existeR = recuperarH.getReservas().existeElemento(r);
+		boolean existeE = recuperarH.getEsperas().existeElemento(e);
 
-		if (!existeR) {
+		// System.out.println("Existe la espera: " + existeE);
+
+		if (!existeR && !existeE) {
 			return TipoRet.ERROR_2;
 		}
 
-		recuperarH.borrarReservas(cliente, ciudad, hotel);
-		// System.out.println("Reservas = " + recuperarH.getReservas().largo());
-		// System.out.println("Esperas = " + recuperarH.getEsperas().largo());
-		return TipoRet.OK;
+		if (existeR) {
+			recuperarH.borrarReservas(cliente, ciudad, hotel);
+		}
 
+		if (existeE) {
+			recuperarH.borrarespera(cliente);
+		}
+
+		// System.out.println("Reservas = " +
+		// recuperarH.getReservas().cantidadElementos());
+		// System.out.println("Esperas = " +
+		// recuperarH.getEsperas().cantidadElementos());
+
+		return TipoRet.OK;
 	}
 
 	@Override

@@ -10,48 +10,49 @@ public class Main {
 
 		// ---------------------- PRUEBAS OK --------------------------//
 
-		// PruebaOK_CrearSistemaReservas(s, p);
-		// PruebaOK_DestruirSistemaReservas(s, p);
-		// PruebaOK_RegistrarCiudad(s, p);
-		// PruebaOK_RegistrarHotel(s, p);
-		// PruebaOK_IngresarServicio(s, p);
-		// PruebaOK_BorrarServicio(s, p);
-		// PruebaOK_IngresarComentario(s, p);
-		// PruebaOK_RealizarReserva(s, p);
-		// PruebaOK_CancelarReserva(s, p);
-		// PruebaOK_ListarServicios(s, p);
-		// PruebaOK_ListarHotelesCiudad(s, p);
-		// PruebaOK_ListarComentarios(s, p);
-		// PruebaOK_ListarEspera(s, p);
+		PruebaOK_CrearSistemaReservas(s, p);
+		PruebaOK_DestruirSistemaReservas(s, p);
+		PruebaOK_RegistrarCiudad(s, p);
+		PruebaOK_RegistrarHotel(s, p);
+		PruebaOK_IngresarServicio(s, p);
+		PruebaOK_BorrarServicio(s, p);
+		PruebaOK_IngresarComentario(s, p);
+		PruebaOK_RealizarReserva(s, p);
+		PruebaOK_CancelarReserva(s, p);
+		PruebaOK_ListarServicios(s, p);
+		PruebaOK_ListarHotelesCiudad(s, p);
+		PruebaOK_ListarComentarios(s, p);
+		PruebaOK_ListarEspera(s, p);
 
-		// PruebaOK_1(s, p);
-		// PruebaOK_2(s, p); faltan ciudades
-		// PruebaOK_3(s, p);
-		// Preguntar por Ciudad10
-		// PruebaOK_4(s, p);
-		// PruebaOK_5(s, p);
+		// ***** Pruebas OK profe ***** //
+		PruebaOK_1(s, p);
+		PruebaOK_2(s, p);
+		PruebaOK_3(s, p);
+		PruebaOK_4(s, p);
+		PruebaOK_5(s, p);
 
 		// ---------------------- PRUEBAS ERROR ----------------------- //
 
-		// PruebaERROR_RegistrarCiudad(s, p);
-		// PruebaERROR_RegistrarHotel(s, p);
-		// PruebaERROR_IngresarServicio(s, p);
-		// PruebaERROR_BorrarServicio(s, p);
-		// PruebaERROR_IngresarComentario(s, p);
-		// PruebaERROR_RealizarReserva(s, p);
-		// PruebaERROR_CancelarReserva(s, p);
-		// PruebaERROR_ListarServicios(s, p);
-		// PruebaERROR_ListarHotelesCiudad(s, p);
-		// PruebaERROR_ListarComentarios(s, p);
-		// PruebaERROR_ListarEspera(s, p);
+		PruebaERROR_RegistrarCiudad(s, p);
+		PruebaERROR_RegistrarHotel(s, p);
+		PruebaERROR_IngresarServicio(s, p);
+		PruebaERROR_BorrarServicio(s, p);
+		PruebaERROR_IngresarComentario(s, p);
+		PruebaERROR_RealizarReserva(s, p);
+		PruebaERROR_CancelarReserva(s, p);
+		PruebaERROR_ListarServicios(s, p);
+		PruebaERROR_ListarHotelesCiudad(s, p);
+		PruebaERROR_ListarComentarios(s, p);
+		PruebaERROR_ListarEspera(s, p);
 
-		// PruebaERROR_1(s, p);
-		// PruebaERROR_2(s, p);
-		// PruebaERROR_3(s, p);
-		// PruebaERROR_4(s, p);
-		// PruebaERROR_5(s, p);
-		// PruebaERROR_6(s, p);
-		// PruebaERROR_7(s, p);
+		// ***** Pruebas ERROR profe ***** //
+		PruebaERROR_1(s, p);
+		PruebaERROR_2(s, p);
+		PruebaERROR_3(s, p);
+		PruebaERROR_4(s, p);
+		PruebaERROR_5(s, p);
+		PruebaERROR_6(s, p);
+		PruebaERROR_7(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION --------------------- //
 
@@ -299,19 +300,23 @@ public class Main {
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.realizarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.realizarReserva(5, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '5' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
-		p.ver(s.realizarReserva(6, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
-				"Se realizó la reserva para el cliente '6' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(5, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Cliente en lista de espera para hotel 'Quiroga' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(6, "Montevideo", "Radisson"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '6' en el hotel 'Radisson' en la ciudad de 'Montevideo'");
+		p.ver(s.realizarReserva(7, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '7' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
+		p.ver(s.realizarReserva(8, "Salto", "NH-Columbia"), Sistema.TipoRet.OK,
+				"Se realizó la reserva para el cliente '8' en el hotel 'NH-Columbia' en la ciudad de 'Salto'");
 
+		p.ver(s.cancelarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
+				"Se canceló la reserva para el cliente '1' en la lista de espera del hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.cancelarReserva(1, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se canceló la reserva para el cliente '1' en el hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.cancelarReserva(2, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se canceló la reserva para el cliente '2' en el hotel 'Quiroga' en la ciudad de 'Salto'");
 		p.ver(s.cancelarReserva(3, "Salto", "Quiroga"), Sistema.TipoRet.OK,
 				"Se canceló la reserva para el cliente '3' en el hotel 'Quiroga' en la ciudad de 'Salto'");
-		p.ver(s.cancelarReserva(4, "Salto", "Quiroga"), Sistema.TipoRet.OK,
-				"Se canceló la reserva para el cliente '4' en el hotel 'Quiroga' en la ciudad de 'Salto'");
 
 	}
 
@@ -992,7 +997,6 @@ public class Main {
 		s.destruirSistemaReservas();
 	}
 
-	// Prueba ERROR para Listar Espera
 	public static void PruebaERROR_ListarEspera(Sistema s, Prueba p) {
 
 		p.tituloPrueba("PruebaERROR_ListarEspera - Listar espera");
@@ -1050,6 +1054,7 @@ public class Main {
 
 	}
 
+	// ***** pruebas profe ***** //
 	public static void PruebaOK_1(Sistema s, Prueba p) {
 		System.out.println("Se crea el sistema de reservas vacio");
 		p.ver(s.crearSistemaReservas(5), Sistema.TipoRet.OK, "Se creo el sistema para 5 ciudades");
@@ -1066,7 +1071,7 @@ public class Main {
 		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.ERROR_1, "Se intento agregar Montevideo que ya existe");
 		p.tituloPrueba("AGREGAMOS CIUDAD PARA COMPLETAR MAPA ");
 		p.ver(s.registrarCiudad("Rocha"), Sistema.TipoRet.OK, "Se agrego Rocha QUE COMPLETA EL LIMITE");
-		p.ver(s.registrarCiudad("Soriano"), Sistema.TipoRet.ERROR_1,
+		p.ver(s.registrarCiudad("Soriano"), Sistema.TipoRet.ERROR_2,
 				"Intenta agregar ciudad sobrepasando limite establecido");
 
 		p.tituloPrueba("PRUEBA OK 1 - REGISTRAR HOTEL");
@@ -1100,14 +1105,20 @@ public class Main {
 				"HOTELES - MONTEVIDEO DESPUES DE INTENTAR AGREGAR HOTELES CON ERROR");
 
 		// No se agrega "Artigas" a las ciudades, debería ser ERROR 1
-		// p.ver(s.listarHotelesCiudad("Artigas"), Sistema.TipoRet.OK, "Listado
-		// de hoteles en Artigas");
+		p.ver(s.listarHotelesCiudad("Artigas"), Sistema.TipoRet.ERROR_1, "Listado de hoteles en Artigas");
 		s.destruirSistemaReservas();
 	}
 
 	public static void PruebaOK_2(Sistema s, Prueba p) {
 		s.crearSistemaReservas(5);
 		System.out.println("Se crea el sistema de reservas vacio");
+		p.tituloPrueba("PRUEBA OK 1 - AGREGAR CIUDADES AL MAPA:");
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agrego Montevideo al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agrego Colonia al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agrego Salto al mapa");
+		p.ver(s.registrarCiudad("Rivera"), Sistema.TipoRet.OK, "Se agrego Rivera al mapa");
+		p.ver(s.registrarCiudad("Maldonado"), Sistema.TipoRet.OK, "Se agrego Maldonado al mapa");
+
 		p.tituloPrueba("PRUEBA OK 2");
 		p.tituloPrueba("2.3 REGISTRAR HOTEL");
 		p.ver(s.registrarHotel("Montevideo", "Victoria Plaza", 5, 320), Sistema.TipoRet.OK,
