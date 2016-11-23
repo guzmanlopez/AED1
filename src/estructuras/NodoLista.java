@@ -7,18 +7,6 @@ public class NodoLista {
 	private Object dato;
 	private NodoLista siguiente;
 
-	// Constructor //
-	
-	public NodoLista(Object dato) {
-		this.dato = dato;
-		this.siguiente = null;
-	}
-
-	public NodoLista(Object dato, NodoLista siguiente) {
-		this.dato = dato;
-		this.siguiente = siguiente;
-	}
-
 	// Métodos de acceso y modificación //
 
 	public Object getDato() {
@@ -34,6 +22,18 @@ public class NodoLista {
 	}
 
 	public void setSiguiente(NodoLista siguiente) {
+		this.siguiente = siguiente;
+	}
+
+	// Constructor //
+
+	public NodoLista(Object dato) {
+		this.dato = dato;
+		this.siguiente = null;
+	}
+
+	public NodoLista(Object dato, NodoLista siguiente) {
+		this.dato = dato;
 		this.siguiente = siguiente;
 	}
 

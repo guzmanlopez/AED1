@@ -69,7 +69,7 @@ public class Hotel {
 	}
 
 	public void setComentarios(Comentario comentario) {
-		this.comentarios.insertar(comentario);
+		this.comentarios.agregarInicio(comentario);
 	}
 
 	public ILista getServicios() {
@@ -77,7 +77,7 @@ public class Hotel {
 	}
 
 	public void setServicios(Servicio servicio) {
-		this.servicios.insertar(servicio);
+		this.servicios.agregarInicio(servicio);
 	}
 
 	public ILista getReservas() {
@@ -85,7 +85,7 @@ public class Hotel {
 	}
 
 	public void setReservas(Reserva reserva) {
-		this.reservas.insertar(reserva);
+		this.reservas.agregarInicio(reserva);
 	}
 
 	public ILista getEsperas() {
@@ -93,7 +93,7 @@ public class Hotel {
 	}
 
 	public void setEsperas(Espera espera) {
-		this.reservas.insertar(espera);
+		this.reservas.agregarInicio(espera);
 	}
 
 	// ***** Constructor *****//
@@ -121,21 +121,21 @@ public class Hotel {
 	// pos: el servicio es agregado a ILista servicios
 	public void ingresarServicio(String servicio) {
 		Servicio nuevoS = new Servicio(servicio);
-		this.servicios.insertar(nuevoS);
+		this.servicios.agregarInicio(nuevoS);
 	}
 
 	// pre: el servicio existe en ILista servicios
 	// pos: el servicio es borrado de ILista servicios
 	public void borrarServicio(String servicio) {
 		Servicio borrarS = new Servicio(servicio);
-		this.servicios.borrar(borrarS);
+		this.servicios.borrarElemento(borrarS);
 	}
 
 	// pre: el servicio no existe en ILista servicios
 	// pos: el servicio es agregado a ILista servicios
 	public void ingresarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
 		Comentario nuevoC = new Comentario(comentario, ranking);
-		this.comentarios.insertar(nuevoC);
+		this.comentarios.agregarInicio(nuevoC);
 		actualizarRankingHotel();
 	}
 
@@ -143,7 +143,7 @@ public class Hotel {
 	// pos: el servicio es borrado de ILista servicios
 	public void borrarComentario(String ciudad, String hotel, String comentario, Integer ranking) {
 		Comentario borrarC = new Comentario(comentario, ranking);
-		this.comentarios.borrar(borrarC);
+		this.comentarios.borrarElemento(borrarC);
 		actualizarRankingHotel();
 	}
 
@@ -154,7 +154,7 @@ public class Hotel {
 
 		// Capacidad
 		if (this.capacidad >= 1) {
-			this.reservas.insertar(nuevaR);
+			this.reservas.agregarInicio(nuevaR);
 			this.capacidad = this.capacidad - 1;
 		}
 
@@ -169,18 +169,18 @@ public class Hotel {
 	public void borrarReservas(int cliente, String ciudad, String hotel) {
 
 		Reserva borrarR = new Reserva(cliente, ciudad, hotel);
-		this.reservas.borrar(borrarR);
+		this.reservas.borrarElemento(borrarR);
 
-		if (this.esperas.largo() > 0) {
+		if (this.esperas.cantidadElementos() > 0) {
 
 			// Tomo el primero de la lista de espera
-			Espera e = (Espera) this.esperas.primero();
+			Espera e = (Espera) this.esperas.obtenerPrimerElemento();
 			// Creo la reserva
 			Reserva r = new Reserva(e.getCliente().getId(), ciudad, hotel);
 			// Agrego la reserva a la lista de reservas del hotel
-			this.reservas.insertar(r);
+			this.reservas.agregarInicio(r);
 			// Borro la espera
-			this.esperas.borrar(e);
+			this.esperas.borrarElemento(e);
 
 		}
 
@@ -197,25 +197,31 @@ public class Hotel {
 	public void ingresarEspera(Integer idCliente) {
 
 		Espera nuevaE = new Espera(idCliente);
-		this.esperas.insertar(nuevaE);
+		this.esperas.agregarInicio(nuevaE);
 	}
 
 	// pre: la reserva existe en ILista reservas
 	// pos: la reserva es borrada de ILista reservas
 	public void borrarespera(Integer idCliente) {
 		Espera nuevaE = new Espera(idCliente);
-		this.esperas.borrar(nuevaE);
+		this.esperas.borrarElemento(nuevaE);
 	}
 
 	private void actualizarRankingHotel() {
 
 		float rankingTotal = 0;
 
-		for (Object comentario : this.comentarios) {
-			Comentario c = (Comentario) comentario;
-			rankingTotal += c.getRanking();
+		for (Integer i = 0; i < this.comentarios.cantidadElementos(); i++) {
+			Comentario comentario = (Comentario) this.comentarios.obtenerElementoI(i);
+			rankingTotal += comentario.getRanking();
 		}
-		this.rankingHotel = rankingTotal / this.comentarios.largo();
+
+		// for (Object comentario : this.comentarios) {
+		// Comentario c = (Comentario) comentario;
+		// rankingTotal += c.getRanking();
+		// }
+
+		this.rankingHotel = rankingTotal / this.comentarios.cantidadElementos();
 	}
 
 	// ***** Sobreescrituras ***** //

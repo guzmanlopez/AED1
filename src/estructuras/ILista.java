@@ -1,23 +1,34 @@
 package estructuras;
 
-public interface ILista extends Iterable<Object> {
+public interface ILista {
 
-	// Pre: Lista.largo() > 0
-	public Object primero();
+	// public interface ILista extends Iterable<Object>
 
-	// Pos: Inserta el elemento 'n' al principio de la lista.
-	public void insertar(Object dato);
+	// ***** Métodos de la interfaz ***** //
 
-	public int largo();
+	public boolean esVacia();
 
-	public boolean existe(Object dato);
+	public void agregarInicio(Object dato);
 
-	// pre: el objeto existe en la lista
-	// pos: el objeto es borrado de la lista
-	public void borrar(Object dato);
+	public void agregarFinal(Object dato);
 
-	// Pre: existe el dato
-	public Object recuperar(Object dato);
+	public void borrarNodoIni();
 
-	public String imprimir();
+	public void borrarNodoFin();
+
+	public void vaciarLista();
+
+	public void borrarElemento(Object dato);
+
+	public void mostrarElemento();
+
+	public boolean existeElemento(Object dato);
+
+	public Object obtenerElemento(Object dato);
+
+	public Object obtenerPrimerElemento();
+
+	public int cantidadElementos();
+
+	Object obtenerElementoI(Integer i);
 }

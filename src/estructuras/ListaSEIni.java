@@ -7,6 +7,7 @@ public class ListaSEIni implements ILista {
 	/***** Atributos *****/
 
 	private NodoLista inicio;
+	private NodoLista fin;
 	private int cant;
 
 	/***** Constructor *****/
@@ -14,94 +15,113 @@ public class ListaSEIni implements ILista {
 	// Pos: Constructor, crea la lista vacía
 	public ListaSEIni() {
 		this.inicio = null;
+		this.fin = null;
 		this.cant = 0;
 	}
 
-	// Pos: Constructor, crea la lista vacía.
-	@Override
-	public Object primero() {
-		return inicio.getDato();
+	// ***** Métodos de acceso y modificación ***** //
+	public void setInicio(NodoLista ini) {
+		this.inicio = ini;
 	}
 
-	// Insertar al inicio //
-	// Pos: Inserta el elemento 'n' al principio de la lista
-	@Override
-	public void insertar(Object dato) {
-		inicio = new NodoLista(dato, inicio);
-		cant++;
+	public NodoLista getInicio() {
+		return inicio;
 	}
 
-	@Override
-	public Iterator<Object> iterator() {
-
-		return new Iterator<Object>() {
-
-			private NodoLista aux = inicio;
-
-			// Pos: Retorna true si la lista está vacía
-			@Override
-			public boolean hasNext() {
-				return aux != null;
-			}
-
-			// Pre: La lista no está vacía
-			// Pos: Retorna el elemento siguiente en la iteración
-			@Override
-			public Object next() {
-				Object actual = aux.getDato();
-				aux = aux.getSiguiente();
-				return actual;
-			}
-		};
+	public void setFin(NodoLista fin) {
+		this.fin = fin;
 	}
 
-	@Override
-	public int largo() {
-		int cont = 0;
-		NodoLista aux = inicio;
-		while (aux != null) {
-			cont++;
-			aux = aux.getSiguiente();
+	public NodoLista getFin() {
+		return fin;
+	}
+
+	// ***** Métodos ***** //
+
+	// PRE:
+	// POS: Retorna true si la lista no tiene nodos
+	public boolean esVacia() {
+		if (this.inicio == null) {
+			return true;
+		} else {
+			return false;
 		}
-		return cont;
 	}
 
+	// ***** INSERTAR ***** //
+
+	// PRE:
+	// POS: Agrega un nuevo Nodo al principio de la lista
 	@Override
-	public boolean existe(Object dato) {
+	public void agregarInicio(Object dato) {
 
-		NodoLista aux = inicio;
-
-		while (aux != null) {
-
-			if (aux.getDato().equals(dato)) {
-				return true;
-			} else {
-				aux = aux.getSiguiente();
-			}
+		// this.inicio = new NodoLista(dato, inicio);
+		// this.cant++;
+		NodoLista nuevo = new NodoLista(dato);
+		nuevo.setSiguiente(inicio);
+		this.inicio = nuevo;
+		this.cant++;
+		if (this.fin == null) {// estoy insertando el primer nodo
+			this.fin = nuevo;
 		}
-		return false;
 	}
 
-	// Pre: existe el dato
-	@Override
-	public Object recuperar(Object dato) {
+	// PRE:
+	// POS: Agrega un nuevo Nodo al final de la lista
+	public void agregarFinal(Object dato) {
 
-		NodoLista aux = inicio;
+		if (this.esVacia()) {
+			this.agregarInicio(dato);
+		}
 
-		while (aux != null) {
-			if (aux.getDato().equals(dato))
-				return aux.getDato();
+		else {
+			NodoLista aux = this.inicio;
+			while (aux.getSiguiente() != null)
+				aux = aux.getSiguiente();
+			NodoLista nuevo = new NodoLista(dato);
+			aux.setSiguiente(nuevo);
+			this.fin = nuevo;
+			this.cant++;
+		}
+	}
+
+	// ***** BORRAR ***** //
+
+	// PRE: Lista con al menos un elemento
+	// POS: Borra el primer nodo
+	public void borrarNodoIni() {
+		if (!this.esVacia()) {
+			this.inicio = this.inicio.getSiguiente();
+		}
+	}
+
+	// PRE:
+	// POS: Borra el último nodo
+	public void borrarNodoFin() {
+		if (!this.esVacia()) {
+			if (this.inicio == this.fin)
+				this.borrarNodoIni();
 			else {
-				aux = aux.getSiguiente();
+				NodoLista aux = this.inicio;
+				while (aux.getSiguiente().getSiguiente() != null)
+					aux = aux.getSiguiente();
+				this.fin = aux;
+				this.fin.setSiguiente(null);
 			}
 		}
-		throw new UnsupportedOperationException();
+	}
+
+	// PRE: lista con al menos un elemento
+	// POS: elimina todos los nodos de una lista dada
+	public void vaciarLista() {
+		while (inicio != null)
+			borrarNodoIni();
 	}
 
 	// pre: el objeto existe en la lista
 	// pos: el objeto es borrado de la lista
 	@Override
-	public void borrar(Object dato) {
+	public void borrarElemento(Object dato) {
 
 		if (inicio.getDato().equals(dato)) {
 			inicio = inicio.getSiguiente();
@@ -118,49 +138,111 @@ public class ListaSEIni implements ILista {
 		}
 	}
 
-	// pre: el objeto existe en la lista
-	// pos: el objeto es borrado de la lista
-	@Override
-	public String imprimir() {
+	// ***** DEVOLVER ***** //
 
-		// NodoLista aux = inicio;
-		// String retorno = "";
-		//
-		// if (inicio == null) {
-		// retorno = "No existen servicios registrados en el hotel";
-		// }
-		//
-		// int i = 0;
-		//
-		// while (aux != null) {
-		// i++;
-		// retorno = i + "- " + aux.getDato().toString();
-		// return retorno;
-		// }
-		// return retorno;
-
-		String retorno = "";
-		NodoLista aux = this.inicio;
-		Integer i = 0;
-
-		while (aux != null) {
-			i++;
-			aux = aux.getSiguiente();
+	// PRE:
+	// POS: Recorre y muestra los datos de lista
+	public void mostrarElemento() {
+		if (this.esVacia())
+			System.out.println("Lista vacía");
+		else {
+			NodoLista aux = this.inicio;
+			while (aux != null) {
+				System.out.println(aux.getDato());
+				aux = aux.getSiguiente();
+			}
 		}
-		
-		retorno = i.toString();
-		return retorno;
-
 	}
 
-	// if (this.esVacia())
-	// System.out.println("La lista es vacia");
-	// else{
-	// NodoLista aux = this.inicio;
-	// while (aux != null){
-	// System.out.println(aux.getElem());
-	// aux = aux.getSig();
-	// }
-	// }
+	// Pos: Retorna true si existe el elemento en la lista o false si no existe
+	// el elemento en la lista
+	@Override
+	public boolean existeElemento(Object dato) {
+		NodoLista aux = inicio;
+		while (aux != null) {
+			if (aux.getDato().equals(dato)) {
+				return true;
+			} else {
+				aux = aux.getSiguiente();
+			}
+		}
+		return false;
+	}
 
+	// Pre: existe el dato
+	// Pos: devuelve el dato de la lista
+	@Override
+	public Object obtenerElemento(Object dato) {
+		NodoLista aux = inicio;
+		while (aux != null && !aux.getDato().equals(dato))
+			aux = aux.getSiguiente();
+		return aux.getDato();
+	}
+
+	@Override
+	public Object obtenerElementoI(Integer i) {
+		NodoLista aux = inicio;
+		if (this.esVacia()) {
+			return null;
+		} 
+		
+		if(this.cantidadElementos() == 1) {
+			return inicio.getDato();
+		}
+		
+		else {
+			Integer ite = 0;
+			while (aux.getSiguiente() != null && ite <= i) {
+				if(ite == i) {
+					return aux.getDato();
+				}
+				aux = aux.getSiguiente();
+				ite++;
+			}
+		}
+		return aux.getDato();
+	}
+
+	// POS: devuelve el primer elemento de la lista
+	@Override
+	public Object obtenerPrimerElemento() {
+		return inicio.getDato();
+	}
+
+	// PRE:
+	// POS: Retorna la cantidad de nodos que tiene la lista
+	@Override
+	public int cantidadElementos() {
+		int cont = 0;
+		NodoLista aux = inicio;
+		while (aux != null) {
+			cont++;
+			aux = aux.getSiguiente();
+		}
+		return cont;
+	}
+
+	// @Override
+	// public Iterator<Object> iterator() {
+	//
+	// return new Iterator<Object>() {
+	//
+	// private NodoLista aux = inicio;
+	//
+	// // Pos: Retorna true si la lista no está vacía
+	// @Override
+	// public boolean hasNext() {
+	// return aux != null;
+	// }
+	//
+	// // Pre: La lista no está vacía
+	// // Pos: Retorna el elemento siguiente en la iteración
+	// @Override
+	// public Object next() {
+	// Object actual = aux.getDato();
+	// aux = aux.getSiguiente();
+	// return actual;
+	// }
+	// };
+	// }
 }

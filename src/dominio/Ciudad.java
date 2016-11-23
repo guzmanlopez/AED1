@@ -25,7 +25,7 @@ public class Ciudad {
 	}
 
 	public void setHoteles(Hotel hotel) {
-		this.hoteles.insertar(hotel);
+		this.hoteles.agregarInicio(hotel);
 	}
 
 	// ***** Constructor ***** //
@@ -42,14 +42,14 @@ public class Ciudad {
 	// pos: el hotel es agregado a ILista hoteles
 	public void ingresarHotel(String nombre, String ciudad) {
 		Hotel nuevoH = new Hotel(nombre, this.nomCiudad);
-		this.hoteles.insertar(nuevoH);
+		this.hoteles.agregarInicio(nuevoH);
 	}
 
 	// pre: el hotel existe en ILista hoteles
 	// pos: el hotel es borrado de ILista hoteles
 	public void borrarHotel(String nombre, String ciudad) {
 		Hotel nuevoH = new Hotel(nombre, this.nomCiudad);
-		this.hoteles.borrar(nuevoH);
+		this.hoteles.borrarElemento(nuevoH);
 	}
 
 	// pre: el hotel no existe en ILista hoteles

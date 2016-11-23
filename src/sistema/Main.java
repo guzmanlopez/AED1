@@ -10,33 +10,33 @@ public class Main {
 
 		// ---------------------- PRUEBAS OK --------------------------//
 
-		// PruebaOK_CrearSistemaReservas(s, p);
-		// PruebaOK_DestruirSistemaReservas(s, p);
-		// PruebaOK_RegistrarCiudad(s, p);
-		// PruebaOK_RegistrarHotel(s, p);
-		// PruebaOK_IngresarServicio(s, p);
-		// PruebaOK_BorrarServicio(s, p);
-		 PruebaOK_IngresarComentario(s, p);
-		// PruebaOK_RealizarReserva(s, p);
-		// PruebaOK_CancelarReserva(s, p);
-		// PruebaOK_ListarServicios(s, p);
-		// PruebaOK_ListarHotelesCiudad(s, p);
-		// PruebaOK_ListarComentarios(s, p);
-		// PruebaOK_ListarEspera(s, p);
+		PruebaOK_CrearSistemaReservas(s, p);
+		PruebaOK_DestruirSistemaReservas(s, p);
+		PruebaOK_RegistrarCiudad(s, p);
+		PruebaOK_RegistrarHotel(s, p);
+		PruebaOK_IngresarServicio(s, p);
+		PruebaOK_BorrarServicio(s, p);
+		PruebaOK_IngresarComentario(s, p);
+		PruebaOK_RealizarReserva(s, p);
+		PruebaOK_CancelarReserva(s, p);
+		PruebaOK_ListarServicios(s, p);
+		PruebaOK_ListarHotelesCiudad(s, p);
+		PruebaOK_ListarComentarios(s, p);
+		PruebaOK_ListarEspera(s, p);
 
 		// ---------------------- PRUEBAS ERROR ----------------------- //
 
-//		 PruebaERROR_RegistrarCiudad(s, p);
-//		 PruebaERROR_RegistrarHotel(s, p);
-//		 PruebaERROR_IngresarServicio(s, p);
-//		 PruebaERROR_BorrarServicio(s, p);
-//		 PruebaERROR_IngresarComentario(s, p);
-//		 PruebaERROR_RealizarReserva(s, p);
-//		 PruebaERROR_CancelarReserva(s, p);
-//		 PruebaERROR_ListarServicios(s, p);
-//		 PruebaERROR_ListarHotelesCiudad(s, p);
-//		 PruebaERROR_ListarComentarios(s, p);
-//		 PruebaERROR_ListarEspera(s, p);
+		PruebaERROR_RegistrarCiudad(s, p);
+		PruebaERROR_RegistrarHotel(s, p);
+		PruebaERROR_IngresarServicio(s, p);
+		PruebaERROR_BorrarServicio(s, p);
+		PruebaERROR_IngresarComentario(s, p);
+		PruebaERROR_RealizarReserva(s, p);
+		PruebaERROR_CancelarReserva(s, p);
+		PruebaERROR_ListarServicios(s, p);
+		PruebaERROR_ListarHotelesCiudad(s, p);
+		PruebaERROR_ListarComentarios(s, p);
+		PruebaERROR_ListarEspera(s, p);
 
 		// ---------------------- PRUEBAS MODIFICACION --------------------- //
 
