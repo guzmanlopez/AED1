@@ -3,17 +3,13 @@ package sistema;
 import dominio.Hotel;
 import dominio.Ciudad;
 import dominio.Comentario;
-
-//import dominio.Cliente;
-//import dominio.Comentario;
-
-// ver si tengo que importar estas clases 
 import dominio.Servicio;
 import dominio.Reserva;
 import dominio.Espera;
 import estructuras.ICola;
 import estructuras.ILista;
 import estructuras.ListaSEIni;
+import estructuras.QuickSort;
 
 public class Sistema implements ISistema {
 
@@ -392,7 +388,8 @@ public class Sistema implements ISistema {
 		if (listaHoteles.cantidadElementos() == 0)
 			System.out.println("No hay registros de hoteles en el sistema");
 		else {
-			System.out.println("Hoteles ordenados por ranking: " + "/n");
+			QuickSort.quickSort2(listaHoteles, 1, listaHoteles.cantidadElementos());
+			System.out.println("Hoteles ordenados por ranking: " + "\n");
 			for (Integer i = 0; i < listaHoteles.cantidadElementos(); i++) {
 				Hotel hotel = (Hotel) listaHoteles.obtenerElementoI(i);
 				System.out.println((String) hotel.getCiudad() + " - " + (String) hotel.toString() + " - "

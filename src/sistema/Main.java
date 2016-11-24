@@ -23,6 +23,7 @@ public class Main {
 		// PruebaOK_CancelarReserva(s, p);
 		// PruebaOK_ListarServicios(s, p);
 		// PruebaOK_ListarHotelesCiudad(s, p);
+		PruebaOK_ListarHotelesRanking(s, p);
 		// PruebaOK_ListarComentarios(s, p);
 		// PruebaOK_ListarEspera(s, p);
 
@@ -55,7 +56,7 @@ public class Main {
 		// PruebaERROR_7(s, p);
 
 		// ------------------- IMPRIMIR RESULTADO PRUEBAS ------------------ //
-		 p.imprimirResultadosPrueba();
+		p.imprimirResultadosPrueba();
 
 		// QuickSort();
 	}
@@ -63,7 +64,7 @@ public class Main {
 	public static void QuickSort() {
 
 		int[] vector = { 1, 3, 6, 8, 9, 2, 3, 4, 6, 5 };
-		QuickSort.quickSort2(vector, 0, 9);
+		QuickSort.quickSort(vector, 0, 9);
 		System.out.println(vector[0]);
 		System.out.println(vector[1]);
 		System.out.println(vector[2]);
@@ -460,6 +461,42 @@ public class Main {
 		p.ver(s.listarHotelesCiudad("Montevideo"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Montevideo'");
 		p.ver(s.listarHotelesCiudad("Colonia"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Colonia'");
 		p.ver(s.listarHotelesCiudad("Maldonado"), Sistema.TipoRet.OK, "Listado de los hoteles de 'Maldonado'");
+
+	}
+
+	// Prueba OK para Listar Hoteles por ranking
+	public static void PruebaOK_ListarHotelesRanking(Sistema s, Prueba p) {
+
+		p.tituloPrueba("PruebaOK_ListarComentarios - Listar Comentarios");
+
+		p.ver(s.crearSistemaReservas(20), Sistema.TipoRet.OK,
+				"Se creó un sistema de reservas con límite de '20' ciudades");
+
+		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
+		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
+
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+
+		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Excelente servicio y atención' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 3),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Cena muy temprana y poco abundante' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "La piscina tiene una temperatura ideal!", 5),
+				Sistema.TipoRet.OK,
+				"Se agregó el comentario 'La piscina tiene una temperatura ideal!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+
+		p.ver(s.listarHotelesRanking(), Sistema.TipoRet.OK, "Listar hoteles por Ranking");
 
 	}
 

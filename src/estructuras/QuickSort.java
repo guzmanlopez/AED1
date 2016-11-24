@@ -1,5 +1,7 @@
 package estructuras;
 
+import dominio.Hotel;
+
 public class QuickSort {
 
 	// public static void quickSort(int[] vector, int primero, int ultimo) {
@@ -54,12 +56,49 @@ public class QuickSort {
 		return i;
 	}
 
-	public static void quickSort2(int arr[], int left, int right) {
+	public static void quickSort(int arr[], int left, int right) {
 		int index = partition(arr, left, right);
 		if (left < index - 1)
-			quickSort2(arr, left, index - 1);
+			quickSort(arr, left, index - 1);
 		if (index < right)
-			quickSort2(arr, index, right);
+			quickSort(arr, index, right);
+	}
+
+	public static int partition2(ILista lista, int primero, int ultimo) {
+		int i = primero, j = ultimo;
+		Object auxiliar;
+		int pivote = (primero + ultimo) / 2;
+
+		while (i <= j) {
+
+			while (((Hotel) lista.obtenerElementoI(i)).getRanking() < ((Hotel) lista.obtenerElementoI(pivote))
+					.getRanking())
+				i++;
+
+			while (((Hotel) lista.obtenerElementoI(j)).getRanking() > ((Hotel) lista.obtenerElementoI(pivote))
+					.getRanking())
+				j--;
+			
+			if (i <= j) {
+				auxiliar = lista.obtenerElementoI(i);
+				
+				lista.agregarFinal(lista.obtenerElementoI(j));
+				lista.agregarInicio(auxiliar);
+				i++;
+				j--;
+			}
+		}
+		;
+
+		return i;
+	}
+
+	public static void quickSort2(ILista lista, int left, int right) {
+		int index = partition2(lista, left, right);
+		if (left < index - 1)
+			quickSort2(lista, left, index - 1);
+		if (index < right)
+			quickSort2(lista, index, right);
 	}
 
 }
