@@ -1,7 +1,5 @@
 package sistema;
 
-import estructuras.QuickSort;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -35,46 +33,28 @@ public class Main {
 
 		// ---------------------- PRUEBAS ERROR ----------------------- //
 
-		 PruebaERROR_RegistrarCiudad(s, p);
-		 PruebaERROR_RegistrarHotel(s, p);
-		 PruebaERROR_IngresarServicio(s, p);
-		 PruebaERROR_BorrarServicio(s, p);
-		 PruebaERROR_IngresarComentario(s, p);
-		 PruebaERROR_RealizarReserva(s, p);
-		 PruebaERROR_CancelarReserva(s, p);
-		 PruebaERROR_ListarServicios(s, p);
-		 PruebaERROR_ListarHotelesCiudad(s, p);
-		 PruebaERROR_ListarComentarios(s, p);
-		 PruebaERROR_ListarEspera(s, p);
-		
-		 PruebaERROR_1(s, p);
-		 PruebaERROR_2(s, p);
-		 PruebaERROR_3(s, p);
-		 PruebaERROR_4(s, p);
-		 PruebaERROR_5(s, p);
-		 PruebaERROR_6(s, p);
-		 PruebaERROR_7(s, p);
+		PruebaERROR_RegistrarCiudad(s, p);
+		PruebaERROR_RegistrarHotel(s, p);
+		PruebaERROR_IngresarServicio(s, p);
+		PruebaERROR_BorrarServicio(s, p);
+		PruebaERROR_IngresarComentario(s, p);
+		PruebaERROR_RealizarReserva(s, p);
+		PruebaERROR_CancelarReserva(s, p);
+		PruebaERROR_ListarServicios(s, p);
+		PruebaERROR_ListarHotelesCiudad(s, p);
+		PruebaERROR_ListarComentarios(s, p);
+		PruebaERROR_ListarEspera(s, p);
+
+		PruebaERROR_1(s, p);
+		PruebaERROR_2(s, p);
+		PruebaERROR_3(s, p);
+		PruebaERROR_4(s, p);
+		PruebaERROR_5(s, p);
+		PruebaERROR_6(s, p);
+		PruebaERROR_7(s, p);
 
 		// ------------------- IMPRIMIR RESULTADO PRUEBAS ------------------ //
 		p.imprimirResultadosPrueba();
-
-		// QuickSort();
-	}
-
-	public static void QuickSort() {
-
-		int[] vector = { 1, 3, 6, 8, 9, 2, 3, 4, 6, 5 };
-		QuickSort.quickSort(vector, 0, 9);
-		System.out.println(vector[0]);
-		System.out.println(vector[1]);
-		System.out.println(vector[2]);
-		System.out.println(vector[3]);
-		System.out.println(vector[4]);
-		System.out.println(vector[5]);
-		System.out.println(vector[6]);
-		System.out.println(vector[7]);
-		System.out.println(vector[8]);
-		System.out.println(vector[9]);
 
 	}
 
