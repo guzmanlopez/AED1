@@ -500,8 +500,9 @@ public class Sistema implements ISistema {
 	}
 
 	private void ordenarHoteles(Hotel h) {
-		if (this.hoteles.existeElemento(h))
-			this.hoteles.borrarElemento(h);
+		this.hotelesOrd = this.hoteles;
+		if (this.hotelesOrd.existeElemento(h))
+			this.hotelesOrd.borrarElemento(h);
 		this.hotelesOrd.insertar(h);
 	}
 
