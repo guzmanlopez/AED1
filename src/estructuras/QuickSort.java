@@ -78,12 +78,11 @@ public class QuickSort {
 			while (((Hotel) lista.obtenerElementoI(j)).getRanking() > ((Hotel) lista.obtenerElementoI(pivote))
 					.getRanking())
 				j--;
-			
+
 			if (i <= j) {
 				auxiliar = lista.obtenerElementoI(i);
-				
-				lista.agregarFinal(lista.obtenerElementoI(j));
-				lista.agregarInicio(auxiliar);
+				lista.agregarI(lista.obtenerElementoI(j), i);
+				lista.agregarI(auxiliar, j);
 				i++;
 				j--;
 			}

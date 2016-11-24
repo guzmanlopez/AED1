@@ -85,6 +85,29 @@ public class ListaSEIni implements ILista {
 		}
 	}
 
+	// PRE: IMPLEMENTAR ESTA FUNCION
+	// POS: Agrega un nuevo Nodo en la posición i de la lista
+	@Override
+	public void agregarI(Object dato, Integer i) {
+
+		if (i == 0) {
+			inicio = inicio.getSiguiente();
+		} else {
+			NodoLista aux = inicio;
+			NodoLista nuevo = new NodoLista(dato);
+			int ite = 0;
+			while (aux.getSiguiente() != null && ite < i) {
+				if (ite == i) {
+					aux.setSiguiente(nuevo);
+					return;
+				}
+				aux = aux.getSiguiente();
+				ite++;
+			}
+			this.cant++;
+		}
+	}
+
 	// ***** BORRAR ***** //
 
 	// PRE: Lista con al menos un elemento

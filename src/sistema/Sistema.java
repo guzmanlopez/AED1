@@ -388,7 +388,7 @@ public class Sistema implements ISistema {
 		if (listaHoteles.cantidadElementos() == 0)
 			System.out.println("No hay registros de hoteles en el sistema");
 		else {
-			QuickSort.quickSort2(listaHoteles, 1, listaHoteles.cantidadElementos());
+			QuickSort.quickSort2(listaHoteles, 0, listaHoteles.cantidadElementos());
 			System.out.println("Hoteles ordenados por ranking: " + "\n");
 			for (Integer i = 0; i < listaHoteles.cantidadElementos(); i++) {
 				Hotel hotel = (Hotel) listaHoteles.obtenerElementoI(i);

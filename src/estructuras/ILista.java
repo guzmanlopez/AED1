@@ -31,4 +31,6 @@ public interface ILista {
 	public int cantidadElementos();
 
 	Object obtenerElementoI(Integer i);
+
+	void agregarI(Object dato, Integer i);
 }
