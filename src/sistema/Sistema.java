@@ -492,34 +492,6 @@ public class Sistema implements ISistema {
 
 		return TipoRet.NO_IMPLEMENTADA;
 
-		// ILista listaCiudades = this.ciudades;
-		// int fila1 = this.cantCiudades;
-		//
-		// for (Integer i = 0; i < fila1; i++) {
-		// Ciudad c = (Ciudad) listaCiudades.obtenerElementoI(i);
-		// System.out.println((String) c.getNomCiudad());
-		// }
-		//
-		// System.out.println(fila1);
-		//
-		//
-		// for (Integer i = 0; i < fila1; i++) {
-		// Ciudad c = (Ciudad) listaCiudades.obtenerElementoI(i);
-		// System.out.println((String) c.getNomCiudad());
-		// }
-		//
-		// int i = 0;
-		// for (Object o2 : this.ciudades) {
-		// String fila = "";
-		// Ciudad c2 = (Ciudad) o2;
-		// fila += fixedLength(c2.getNombre());
-		// for (int j = 0; j < tabla.length; j++) {
-		// fila += fixedLength("" + tabla[i][j]);
-		// }
-		// i++;
-		// System.out.println(fila);
-		// }
-
 	}
 
 	@Override
