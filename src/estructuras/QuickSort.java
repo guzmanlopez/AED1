@@ -67,20 +67,17 @@ public class QuickSort {
 	public static int partition2(ILista lista, int primero, int ultimo) {
 		int i = primero, j = ultimo;
 		Object auxiliar;
-		int pivote = (primero + ultimo) / 2;
+		float pivote = (primero + ultimo) / 2;
 
 		while (i <= j) {
-
-			while (((Hotel) lista.obtenerElementoI(i)).getRanking() < ((Hotel) lista.obtenerElementoI(pivote))
-					.getRanking())
+			while (((Hotel) lista.obtenerElementoI(i)).getRanking() < pivote)
 				i++;
 
-			while (((Hotel) lista.obtenerElementoI(j)).getRanking() > ((Hotel) lista.obtenerElementoI(pivote))
-					.getRanking())
+			while (((Hotel) lista.obtenerElementoI(j)).getRanking() > pivote)
 				j--;
 
 			if (i <= j) {
-				auxiliar = lista.obtenerElementoI(i);
+				auxiliar = lista.obtenerElementoI(i);				
 				lista.agregarI(lista.obtenerElementoI(j), i);
 				lista.agregarI(auxiliar, j);
 				i++;

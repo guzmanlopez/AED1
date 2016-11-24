@@ -23,10 +23,12 @@ public class Main {
 		// PruebaOK_CancelarReserva(s, p);
 		// PruebaOK_ListarServicios(s, p);
 		// PruebaOK_ListarHotelesCiudad(s, p);
+
 		PruebaOK_ListarHotelesRanking(s, p);
+
 		// PruebaOK_ListarComentarios(s, p);
 		// PruebaOK_ListarEspera(s, p);
-
+		//
 		// PruebaOK_1(s, p);
 		// PruebaOK_2(s, p);
 		// PruebaOK_3(s, p);
@@ -473,29 +475,43 @@ public class Main {
 				"Se creó un sistema de reservas con límite de '20' ciudades");
 
 		p.ver(s.registrarCiudad("Montevideo"), Sistema.TipoRet.OK, "Se agregó 'Montevideo' al mapa");
+		p.ver(s.registrarCiudad("Maldonado"), Sistema.TipoRet.OK, "Se agregó 'Maldonado' al mapa");
 		p.ver(s.registrarCiudad("Colonia"), Sistema.TipoRet.OK, "Se agregó 'Colonia' al mapa");
 		p.ver(s.registrarCiudad("Salto"), Sistema.TipoRet.OK, "Se agregó 'Salto' al mapa");
 
-		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
+		p.ver(s.registrarHotel("Montevideo", "NH-Columbia", 4, 100), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Montevideo'");
-		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 110), Sistema.TipoRet.OK,
+		p.ver(s.registrarHotel("Montevideo", "Radisson", 4, 100), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'Radisson' a la ciudad 'Montevideo'");
-		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 110), Sistema.TipoRet.OK,
+		p.ver(s.registrarHotel("Maldonado", "Conrad", 4, 100), Sistema.TipoRet.OK,
 				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
-		p.ver(s.registrarHotel("Salto", "NH-Columbia", 4, 110), Sistema.TipoRet.OK,
-				"Se agregó el hotel 'NH-Columbia' a la ciudad 'Salto'");
+		p.ver(s.registrarHotel("Colonia", "Radisson", 4, 100), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Radisson' a la ciudad 'Colonia'");
+		p.ver(s.registrarHotel("Salto", "Horacio Quiroga", 4, 100), Sistema.TipoRet.OK,
+				"Se agregó el hotel 'Horacio Quiroga' a la ciudad 'Salto'");
 
-		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 5), Sistema.TipoRet.OK,
+		p.ver(s.ingresarComentario("Montevideo", "NH-Columbia", "Excelente servicio y atención", 3), Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Excelente servicio y atención' al hotel 'NH-Columbia' de la ciudad 'Montevideo'");
+
 		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
-		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 3),
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 3), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Cena muy temprana y poco abundante", 1),
 				Sistema.TipoRet.OK,
 				"Se agregó el comentario 'Cena muy temprana y poco abundante' al hotel 'Radisson' de la ciudad 'Montevideo'");
-		p.ver(s.ingresarComentario("Montevideo", "Radisson", "La piscina tiene una temperatura ideal!", 5),
-				Sistema.TipoRet.OK,
-				"Se agregó el comentario 'La piscina tiene una temperatura ideal!' al hotel 'Radisson' de la ciudad 'Montevideo'");
+		p.ver(s.ingresarComentario("Montevideo", "Radisson", "Desayunos muy ricos!", 4), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Desayunos muy ricos!' al hotel 'Radisson' de la ciudad 'Montevideo'");
 
+		p.ver(s.ingresarComentario("Maldonado", "Conrad", "Es imposible ganar en la ruleta!", 1), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Es imposible ganar en la ruleta!' al hotel 'Conrad' de la ciudad 'Maldonado'");
+		p.ver(s.ingresarComentario("Maldonado", "Conrad", "Los slots te dan toda la plata!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Los slots te dan toda la plata!' al hotel 'Conrad' de la ciudad 'Maldonado'");
+
+		p.ver(s.ingresarComentario("Salto", "Horacio Quiroga", "Temperatura piscina ideal!", 5), Sistema.TipoRet.OK,
+				"Se agregó el comentario 'Temperatura piscina ideal!' al hotel 'Horacio Quiroga' de la ciudad 'Salto'");
 		p.ver(s.listarHotelesRanking(), Sistema.TipoRet.OK, "Listar hoteles por Ranking");
 
 	}

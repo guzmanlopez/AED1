@@ -12,6 +12,10 @@ public interface ILista {
 
 	public void agregarFinal(Object dato);
 
+	void agregarI(Object dato, Integer i);
+
+	void insertar(Object dato);
+
 	public void borrarNodoIni();
 
 	public void borrarNodoFin();
@@ -32,5 +36,4 @@ public interface ILista {
 
 	Object obtenerElementoI(Integer i);
 
-	void agregarI(Object dato, Integer i);
 }

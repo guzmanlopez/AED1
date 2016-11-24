@@ -85,25 +85,24 @@ public class ListaSEIni implements ILista {
 		}
 	}
 
+	@Override
+	public void insertar(Object dato) {
+		inicio = new NodoLista(dato, inicio);
+		cant++;
+	}
+
 	// PRE: IMPLEMENTAR ESTA FUNCION
 	// POS: Agrega un nuevo Nodo en la posición i de la lista
 	@Override
 	public void agregarI(Object dato, Integer i) {
 
-		if (i == 0) {
-			inicio = inicio.getSiguiente();
-		} else {
+		if (inicio == null || i == 0)
+			inicio = new NodoLista(dato, inicio);
+		else {
 			NodoLista aux = inicio;
-			NodoLista nuevo = new NodoLista(dato);
-			int ite = 0;
-			while (aux.getSiguiente() != null && ite < i) {
-				if (ite == i) {
-					aux.setSiguiente(nuevo);
-					return;
-				}
+			while (aux.getSiguiente() != null && (i--) > 1)
 				aux = aux.getSiguiente();
-				ite++;
-			}
+			aux.setSiguiente(new NodoLista(dato, aux.getSiguiente()));
 			this.cant++;
 		}
 	}

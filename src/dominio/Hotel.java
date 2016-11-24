@@ -18,7 +18,6 @@ public class Hotel {
 	private ILista comentarios = new ListaSEIni();
 	private ILista servicios = new ListaSEIni();
 	private ILista reservas = new ListaSEIni();
-	// private ILista esperas = new ListaSEIni();
 	private ICola esperas = new ColaDinamica();
 
 	// ***** Métodos de acceso y modificación *****//

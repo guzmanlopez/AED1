@@ -8,8 +8,9 @@ import dominio.Reserva;
 import dominio.Espera;
 import estructuras.ICola;
 import estructuras.ILista;
+import estructuras.ListaOrd;
 import estructuras.ListaSEIni;
-import estructuras.QuickSort;
+import estructuras.RankingHotelComparator;
 
 public class Sistema implements ISistema {
 
@@ -18,6 +19,8 @@ public class Sistema implements ISistema {
 	private int cantCiudades = 0;
 
 	private ILista hoteles;
+	private ILista hotelesOrd = new ListaOrd(new RankingHotelComparator());
+	// private ILista hoteles;
 	private ILista ciudades;
 
 	// ***** Métodos ***** //
@@ -97,7 +100,8 @@ public class Sistema implements ISistema {
 				recuperarC.ingresarHotel(nombre, ciudad);
 
 				// Agregar hotel a la lista de hoteles en el sistema
-				this.hoteles.agregarInicio(h);
+				// this.hoteles.agregarInicio(h);
+				this.hoteles.insertar(h);
 				return TipoRet.OK;
 			}
 		}
@@ -217,6 +221,8 @@ public class Sistema implements ISistema {
 			recuperarHenS.ingresarComentario(ciudad, hotel, comentario, ranking);
 
 			// System.out.println(recuperarHenS.getRanking());
+			// Ordeno los hoteles
+			ordenarHoteles(recuperarH);
 
 			return TipoRet.OK;
 		}
@@ -384,11 +390,10 @@ public class Sistema implements ISistema {
 
 	@Override
 	public TipoRet listarHotelesRanking() {
-		ILista listaHoteles = this.hoteles;
+		ILista listaHoteles = this.hotelesOrd;
 		if (listaHoteles.cantidadElementos() == 0)
 			System.out.println("No hay registros de hoteles en el sistema");
 		else {
-			QuickSort.quickSort2(listaHoteles, 0, listaHoteles.cantidadElementos());
 			System.out.println("Hoteles ordenados por ranking: " + "\n");
 			for (Integer i = 0; i < listaHoteles.cantidadElementos(); i++) {
 				Hotel hotel = (Hotel) listaHoteles.obtenerElementoI(i);
@@ -492,6 +497,12 @@ public class Sistema implements ISistema {
 	@Override
 	public TipoRet buscarCamino(int[][] ciudades, String ciudadOrigen, String ciudadDestino) {
 		return TipoRet.NO_IMPLEMENTADA;
+	}
+
+	private void ordenarHoteles(Hotel h) {
+		if (this.hoteles.existeElemento(h))
+			this.hoteles.borrarElemento(h);
+		this.hotelesOrd.insertar(h);
 	}
 
 }
