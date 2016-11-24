@@ -18,30 +18,24 @@ public class Servicio {
 	public Servicio(String nomServicio) {
 		this.nomServicio = nomServicio;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 
 		boolean ret = true;
-
 		if (this == obj) {
 			ret = true;
 		}
-
 		if (obj == null) {
 			ret = false;
 		}
-
 		if (getClass() != obj.getClass()) {
 			ret = false;
 		}
-
 		Servicio otro = (Servicio) obj;
-
 		if (this.nomServicio != otro.nomServicio) {
 			ret = false;
 		}
-
 		return ret;
 	}
 
@@ -49,6 +43,5 @@ public class Servicio {
 	public String toString() {
 		return this.nomServicio;
 	}
-
 
 }

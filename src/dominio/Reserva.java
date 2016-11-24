@@ -45,25 +45,21 @@ public class Reserva {
 	public boolean equals(Object obj) {
 
 		boolean ret = true;
-
 		if (this == obj) {
 			ret = true;
 		}
-
 		if (obj == null) {
 			ret = false;
 		}
-
 		if (getClass() != obj.getClass()) {
 			ret = false;
 		}
-
 		Reserva otra = (Reserva) obj;
-
-		if (this.getCliente().getId() != otra.getCliente().getId() || this.getCiudad().getNomCiudad() != otra.getCiudad().getNomCiudad() || this.getHotel().getNombre() != otra.getHotel().getNombre()) {
+		if (this.getCliente().getId() != otra.getCliente().getId()
+				|| this.getCiudad().getNomCiudad() != otra.getCiudad().getNomCiudad()
+				|| this.getHotel().getNombre() != otra.getHotel().getNombre()) {
 			ret = false;
 		}
-
 		return ret;
 	}
 

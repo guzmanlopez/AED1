@@ -24,7 +24,7 @@ public class Comentario {
 	}
 
 	// Constructor
-	public Comentario(String comentario, int ranking) {
+	public Comentario(String comentario, Integer ranking) {
 		this.comentario = comentario;
 		this.ranking = ranking;
 	}

@@ -11,8 +11,8 @@ public class Hotel {
 
 	private String nombre;
 	private Ciudad ciudad;
-	private int capacidad;
-	private int estrellas;
+	private Integer capacidad;
+	private Integer estrellas;
 	private float rankingHotel;
 
 	private ILista comentarios = new ListaSEIni();
@@ -100,12 +100,12 @@ public class Hotel {
 
 	// ***** Constructor *****//
 
-	public Hotel(String nombre, String ciudad, Integer capacidad, Integer categoria) {
+	public Hotel(String nombre, String ciudad, Integer capacidad, Integer estrellas) {
 
 		this.nombre = nombre;
 		this.ciudad = new Ciudad(ciudad);
 		this.capacidad = capacidad;
-		this.estrellas = categoria;
+		this.estrellas = estrellas;
 		this.rankingHotel = 0;
 
 	}
@@ -151,7 +151,7 @@ public class Hotel {
 
 	// pre: la reserva no existe en ILista reservas
 	// pos: la reserva es agregada a ILista reservas
-	public void ingresarReservas(int cliente, String ciudad, String hotel) {
+	public void ingresarReservas(Integer cliente, String ciudad, String hotel) {
 		Reserva nuevaR = new Reserva(cliente, ciudad, hotel);
 
 		// Capacidad
@@ -167,7 +167,7 @@ public class Hotel {
 
 	// pre: la reserva existe en ILista reservas
 	// pos: la reserva es borrada de ILista reservas
-	public void borrarReservas(int cliente, String ciudad, String hotel) {
+	public void borrarReservas(Integer cliente, String ciudad, String hotel) {
 
 		Reserva borrarR = new Reserva(cliente, ciudad, hotel);
 		this.reservas.borrarElemento(borrarR);
@@ -220,27 +220,20 @@ public class Hotel {
 	// nombre y ciudad
 	@Override
 	public boolean equals(Object obj) {
-
 		boolean ret = true;
-
 		if (this == obj) {
 			ret = true;
 		}
-
 		if (obj == null) {
 			ret = false;
 		}
-
 		if (getClass() != obj.getClass()) {
 			ret = false;
 		}
-
 		Hotel otro = (Hotel) obj;
-
 		if (this.nombre != otro.nombre || this.getCiudad() != otro.getCiudad()) {
 			ret = false;
 		}
-
 		return ret;
 	}
 

@@ -22,27 +22,21 @@ public class Cliente {
 
 	@Override
 	public boolean equals(Object obj) {
-
 		boolean ret = true;
-
 		if (this == obj) {
 			ret = true;
 		}
-
 		if (obj == null) {
 			ret = false;
 		}
-
 		if (getClass() != obj.getClass()) {
 			ret = false;
 		}
-
 		Cliente otro = (Cliente) obj;
 
 		if (this.id != otro.id) {
 			ret = false;
 		}
-
 		return ret;
 	}
 	
@@ -50,6 +44,4 @@ public class Cliente {
 	public String toString() {
 		return this.id.toString();
 	}
-
-
 }

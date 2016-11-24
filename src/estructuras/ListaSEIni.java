@@ -16,7 +16,7 @@ public class ListaSEIni implements ILista {
 	public ListaSEIni() {
 		this.inicio = null;
 		this.fin = null;
-		this.cant = 0;
+		this.setCant(0);
 	}
 
 	// ***** Métodos de acceso y modificación ***** //
@@ -60,7 +60,7 @@ public class ListaSEIni implements ILista {
 		NodoLista nuevo = new NodoLista(dato);
 		nuevo.setSiguiente(inicio);
 		this.inicio = nuevo;
-		this.cant++;
+		this.setCant(this.getCant() + 1);
 		if (this.fin == null) {// estoy insertando el primer nodo
 			this.fin = nuevo;
 		}
@@ -81,17 +81,17 @@ public class ListaSEIni implements ILista {
 			NodoLista nuevo = new NodoLista(dato);
 			aux.setSiguiente(nuevo);
 			this.fin = nuevo;
-			this.cant++;
+			this.setCant(this.getCant() + 1);
 		}
 	}
 
 	@Override
 	public void insertar(Object dato) {
 		inicio = new NodoLista(dato, inicio);
-		cant++;
+		setCant(getCant() + 1);
 	}
 
-	// PRE: IMPLEMENTAR ESTA FUNCION
+	// PRE: 
 	// POS: Agrega un nuevo Nodo en la posición i de la lista
 	@Override
 	public void agregarI(Object dato, Integer i) {
@@ -103,7 +103,7 @@ public class ListaSEIni implements ILista {
 			while (aux.getSiguiente() != null && (i--) > 1)
 				aux = aux.getSiguiente();
 			aux.setSiguiente(new NodoLista(dato, aux.getSiguiente()));
-			this.cant++;
+			this.setCant(this.getCant() + 1);
 		}
 	}
 
@@ -241,6 +241,20 @@ public class ListaSEIni implements ILista {
 			aux = aux.getSiguiente();
 		}
 		return cont;
+	}
+
+	/**
+	 * @return the cant
+	 */
+	public int getCant() {
+		return cant;
+	}
+
+	/**
+	 * @param cant the cant to set
+	 */
+	public void setCant(int cant) {
+		this.cant = cant;
 	}
 
 	// @Override
